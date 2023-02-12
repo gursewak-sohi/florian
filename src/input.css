@@ -1,0 +1,64 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+
+@font-face {
+  font-family: 'Lyon Display';
+  src: url('../fonts/lyon-display/LyonDisplay-Regular.woff2') format('woff2'),
+      url('../fonts/lyon-display/LyonDisplay-Regular.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Lyon Display';
+  src: url('../fonts/lyon-display/LyonDisplay-RegularItalic.woff2') format('woff2'),
+      url('../fonts/lyon-display/LyonDisplay-RegularItalic.woff') format('woff');
+  font-weight: normal;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Lyon Display';
+  src: url('../fonts/lyon-display/LyonDisplay-Light.woff2') format('woff2'),
+      url('../fonts/lyon-display/LyonDisplay-Light.woff2') format('woff');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Lyon Display';
+  src: url('../fonts/lyon-display/LyonDisplay-LightItalic.woff') format('woff2'),
+      url('../fonts/lyon-display/LyonDisplay-LightItalic.woff') format('woff');
+  font-weight: 300;
+  font-style: italic;
+  font-display: swap;
+}
+
+
+@font-face {
+  font-family: 'Non Old';
+  src: url('../fonts/non-old/NON Odd-Regular.woff2') format('woff2'),
+      url('../fonts/non-old/NON Odd-Regular.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+ 
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+/* Swiper JS Pagination */
+
+.swiper-pagination-bullet {
+ @apply !bg-transparent px-3 opacity-50 inline-block
+}
+
+.swiper-pagination-bullet.swiper-pagination-bullet-active {
+  @apply opacity-100 underline
+}
+
