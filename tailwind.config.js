@@ -12,12 +12,16 @@ module.exports = {
                 '3xl': '1920px',
             },
             fontSize: {
-                '1.5xl': ['22px', '30px'],
+                '1.1xl': ['17px', '23px'],
+                '1.5xl': ['22px', '32px'],
+                '2.5xl': ['26px', '32px'],
+                '3.5xl': ['32px', '38px'],
                 '4.5xl': ['42px', '50px'],
             },
             colors: {
                 'primary': {
-                    600: '#F2EBDC', //brand
+                    600: '#F9F3E5', //brand
+                    700: '#F1EBDD', 
                 },
                 'secondary': {
                     600: '#6C7C59', //brand
@@ -28,6 +32,9 @@ module.exports = {
                     700: '#707070',
                 },
             },
+            translate: {
+                55: '55%'
+            }
         },
     },
     plugins: [
