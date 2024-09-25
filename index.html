@@ -123,137 +123,188 @@
             <div class="grid grid-cols-1 md:grid-cols-2 gap-x-10 xl:gap-x-16 gap-y-20 mt-7 md:mt-10">
                 <!-- Grid Item -->
                 <div class="flex flex-col">
-                    <div class="w-full aspect-square relative">
-                        <img class="object-cover w-full h-full" src="assets/images/flower.webp" />
-                        <a class="absolute right-5 bottom-5 z-10 active:scale-95" href="javascript:;">
+                    <div class="swiper display-swiper w-full">
+                        <!-- Additional required wrapper -->
+                        <div class="swiper-wrapper">
+                            <!-- Slides -->
+                            <div class="swiper-slide">
+                                <div class="w-full aspect-square">
+                                    <img class="object-cover w-full h-full" src="assets/images/flower.webp" />
+                                </div>
+                            </div>
+                            <div class="swiper-slide">
+                                <div class="w-full aspect-square">
+                                    <img class="object-cover w-full h-full" src="assets/images/AdobeStock_367073776.webp" />
+                                </div>
+                            </div>
+                            <div class="swiper-slide">
+                                <div class="w-full aspect-square">
+                                    <video class="h-full w-full object-cover" poster="assets/images/AdobeStock_367073776.webp" autoplay muted loop src="assets/videos/florian.mp4"></video>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- If we need navigation buttons -->
+                        <button class="swiper-button-prev absolute h-auto left-5 top-auto bottom-5 z-10 active:scale-95 after:hidden" type="button">
+                            <img class="rotate-180" src="assets/images/svg/arrow.svg" alt="arrow" />
+                        </button>
+                        <button class="swiper-button-next absolute h-auto right-5 top-auto bottom-5 z-10 active:scale-95 after:hidden" type="button">
                             <img src="assets/images/svg/arrow.svg" alt="arrow" />
-                        </a>
+                        </button>
                     </div>
                     <div class="flex flex-col text-center mt-6 md:mt-8 md:px-6">
                         <h3 class="text-2.5xl md:text-3.5xl mb-3">Day Dreamer</h3>
                         <p class="font-light text-xl leading-7 md:text-1.5xl">A natural bouquet of <i>soft blues, whites</i> and <i>creams</i>. Gorgeous <i>fresh flowers</i> arranged by your expert florist. Made using fresh <i>seasonal flowers</i>.</p>
                         <div class="flex flex-col lg:flex-row justify-center items-center gap-5 lg:gap-3.5 mt-5">
                             <a href="javascript:;" class="btn-primary">Buy for £25</a>
-                            <a href="javascript:;" class="btn-secondary">Subscribe - Up to 20% off</a>
+                            <div class="custom-select">
+                                <select>
+                                  <option value="0">Subscribe - Up to 20% off</option>
+                                  <option value="1">Every Week - £18.75</option>
+                                  <option value="2">Every 2 Weeks - £20.00</option>
+                                  <option value="3"> Every 4 Weeks - £22.00</option>
+                                </select>
+                              </div>
                         </div>
                     </div>
                 </div>
+
                 <!-- Grid Item -->
                 <div class="flex flex-col">
-                    <div class="w-full aspect-square relative">
-                        <img class="object-cover w-full h-full" src="assets/images/flower.webp" />
-                        <a class="absolute right-5 bottom-5 z-10 active:scale-95" href="javascript:;">
+                    <div class="swiper display-swiper w-full">
+                        <!-- Additional required wrapper -->
+                        <div class="swiper-wrapper">
+                            <!-- Slides -->
+                            <div class="swiper-slide">
+                                <div class="w-full aspect-square">
+                                    <video class="h-full w-full object-cover" poster="assets/images/AdobeStock_367073776.webp" autoplay muted loop src="assets/videos/florian.mp4"></video>
+                                </div>
+                            </div>
+                            <div class="swiper-slide">
+                                <div class="w-full aspect-square">
+                                    <img class="object-cover w-full h-full" src="assets/images/flower.webp" />
+                                </div>
+                            </div>
+                            <div class="swiper-slide">
+                                <div class="w-full aspect-square">
+                                    <img class="object-cover w-full h-full" src="assets/images/AdobeStock_367073776.webp" />
+                                </div>
+                            </div>
+                        </div>
+                        <!-- If we need navigation buttons -->
+                        <button class="swiper-button-prev absolute h-auto left-5 top-auto bottom-5 z-10 active:scale-95 after:hidden" type="button">
+                            <img class="rotate-180" src="assets/images/svg/arrow.svg" alt="arrow" />
+                        </button>
+                        <button class="swiper-button-next absolute h-auto right-5 top-auto bottom-5 z-10 active:scale-95 after:hidden" type="button">
                             <img src="assets/images/svg/arrow.svg" alt="arrow" />
-                        </a>
+                        </button>
                     </div>
                     <div class="flex flex-col text-center mt-6 md:mt-8 md:px-6">
                         <h3 class="text-2.5xl md:text-3.5xl mb-3">Day Dreamer</h3>
                         <p class="font-light text-xl leading-7 md:text-1.5xl">A natural bouquet of <i>soft blues, whites</i> and <i>creams</i>. Gorgeous <i>fresh flowers</i> arranged by your expert florist. Made using fresh <i>seasonal flowers</i>.</p>
                         <div class="flex flex-col lg:flex-row justify-center items-center gap-5 lg:gap-3.5 mt-5">
                             <a href="javascript:;" class="btn-primary">Buy for £25</a>
-                            <a href="javascript:;" class="btn-secondary">Subscribe - Up to 20% off</a>
+                            <div class="custom-select">
+                                <select>
+                                  <option value="0">Subscribe - Up to 20% off</option>
+                                  <option value="1">Every Week - £18.75</option>
+                                  <option value="2">Every 2 Weeks - £20.00</option>
+                                  <option value="3"> Every 4 Weeks - £22.00</option>
+                                </select>
+                              </div>
                         </div>
                     </div>
                 </div>
-                <!-- Grid Item -->
-                <div class="flex flex-col">
-                    <div class="w-full aspect-square relative">
-                        <img class="object-cover w-full h-full" src="assets/images/flower.webp" />
-                        <a class="absolute right-5 bottom-5 z-10 active:scale-95" href="javascript:;">
+
+                 <!-- Grid Item -->
+                 <div class="flex flex-col">
+                    <div class="swiper display-swiper w-full">
+                        <!-- Additional required wrapper -->
+                        <div class="swiper-wrapper">
+                            <!-- Slides -->
+                            <div class="swiper-slide">
+                                <div class="w-full aspect-square">
+                                    <img class="object-cover w-full h-full" src="assets/images/AdobeStock_367073776.webp" />
+                                </div>
+                            </div>
+                            <div class="swiper-slide">
+                                <div class="w-full aspect-square">
+                                    <img class="object-cover w-full h-full" src="assets/images/flower.webp" />
+                                </div>
+                            </div>
+                            <div class="swiper-slide">
+                                <div class="w-full aspect-square">
+                                    <video class="h-full w-full object-cover" poster="assets/images/AdobeStock_367073776.webp" autoplay muted loop src="assets/videos/florian.mp4"></video>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- If we need navigation buttons -->
+                        <button class="swiper-button-prev absolute h-auto left-5 top-auto bottom-5 z-10 active:scale-95 after:hidden" type="button">
+                            <img class="rotate-180" src="assets/images/svg/arrow.svg" alt="arrow" />
+                        </button>
+                        <button class="swiper-button-next absolute h-auto right-5 top-auto bottom-5 z-10 active:scale-95 after:hidden" type="button">
                             <img src="assets/images/svg/arrow.svg" alt="arrow" />
-                        </a>
+                        </button>
                     </div>
                     <div class="flex flex-col text-center mt-6 md:mt-8 md:px-6">
                         <h3 class="text-2.5xl md:text-3.5xl mb-3">Day Dreamer</h3>
                         <p class="font-light text-xl leading-7 md:text-1.5xl">A natural bouquet of <i>soft blues, whites</i> and <i>creams</i>. Gorgeous <i>fresh flowers</i> arranged by your expert florist. Made using fresh <i>seasonal flowers</i>.</p>
                         <div class="flex flex-col lg:flex-row justify-center items-center gap-5 lg:gap-3.5 mt-5">
                             <a href="javascript:;" class="btn-primary">Buy for £25</a>
-                            <a href="javascript:;" class="btn-secondary">Subscribe - Up to 20% off</a>
+                            <div class="custom-select">
+                                <select>
+                                  <option value="0">Subscribe - Up to 20% off</option>
+                                  <option value="1">Every Week - £18.75</option>
+                                  <option value="2">Every 2 Weeks - £20.00</option>
+                                  <option value="3"> Every 4 Weeks - £22.00</option>
+                                </select>
+                              </div>
                         </div>
                     </div>
                 </div>
+
                 <!-- Grid Item -->
                 <div class="flex flex-col">
-                    <div class="w-full aspect-square relative">
-                        <img class="object-cover w-full h-full" src="assets/images/flower.webp" />
-                        <a class="absolute right-5 bottom-5 z-10 active:scale-95" href="javascript:;">
-                            <img src="assets/images/svg/arrow.svg" alt="arrow" />
-                        </a>
-                    </div>
-                    <div class="flex flex-col text-center mt-6 md:mt-8 md:px-6">
-                        <h3 class="text-2.5xl md:text-3.5xl mb-3">Day Dreamer</h3>
-                        <p class="font-light text-xl leading-7 md:text-1.5xl">A natural bouquet of <i>soft blues, whites</i> and <i>creams</i>. Gorgeous <i>fresh flowers</i> arranged by your expert florist. Made using fresh <i>seasonal flowers</i>.</p>
-                        <div class="flex flex-col lg:flex-row justify-center items-center gap-5 lg:gap-3.5 mt-5">
-                            <a href="javascript:;" class="btn-primary">Buy for £25</a>
-                            <a href="javascript:;" class="btn-secondary">Subscribe - Up to 20% off</a>
+                    <div class="swiper display-swiper w-full">
+                        <!-- Additional required wrapper -->
+                        <div class="swiper-wrapper">
+                            <!-- Slides -->
+                            <div class="swiper-slide">
+                                <div class="w-full aspect-square">
+                                    <img class="object-cover w-full h-full" src="assets/images/flower.webp" />
+                                </div>
+                            </div>
+                            <div class="swiper-slide">
+                                <div class="w-full aspect-square">
+                                    <img class="object-cover w-full h-full" src="assets/images/AdobeStock_367073776.webp" />
+                                </div>
+                            </div>
+                            <div class="swiper-slide">
+                                <div class="w-full aspect-square">
+                                    <video class="h-full w-full object-cover" poster="assets/images/AdobeStock_367073776.webp" autoplay muted loop src="assets/videos/florian.mp4"></video>
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                </div>
-                <!-- Grid Item -->
-                <div class="flex flex-col">
-                    <div class="w-full aspect-square relative">
-                        <img class="object-cover w-full h-full" src="assets/images/flower.webp" />
-                        <a class="absolute right-5 bottom-5 z-10 active:scale-95" href="javascript:;">
+                        <!-- If we need navigation buttons -->
+                        <button class="swiper-button-prev absolute h-auto left-5 top-auto bottom-5 z-10 active:scale-95 after:hidden" type="button">
+                            <img class="rotate-180" src="assets/images/svg/arrow.svg" alt="arrow" />
+                        </button>
+                        <button class="swiper-button-next absolute h-auto right-5 top-auto bottom-5 z-10 active:scale-95 after:hidden" type="button">
                             <img src="assets/images/svg/arrow.svg" alt="arrow" />
-                        </a>
+                        </button>
                     </div>
                     <div class="flex flex-col text-center mt-6 md:mt-8 md:px-6">
                         <h3 class="text-2.5xl md:text-3.5xl mb-3">Day Dreamer</h3>
                         <p class="font-light text-xl leading-7 md:text-1.5xl">A natural bouquet of <i>soft blues, whites</i> and <i>creams</i>. Gorgeous <i>fresh flowers</i> arranged by your expert florist. Made using fresh <i>seasonal flowers</i>.</p>
                         <div class="flex flex-col lg:flex-row justify-center items-center gap-5 lg:gap-3.5 mt-5">
                             <a href="javascript:;" class="btn-primary">Buy for £25</a>
-                            <a href="javascript:;" class="btn-secondary">Subscribe - Up to 20% off</a>
-                        </div>
-                    </div>
-                </div>
-                <!-- Grid Item -->
-                <div class="flex flex-col">
-                    <div class="w-full aspect-square relative">
-                        <img class="object-cover w-full h-full" src="assets/images/flower.webp" />
-                        <a class="absolute right-5 bottom-5 z-10 active:scale-95" href="javascript:;">
-                            <img src="assets/images/svg/arrow.svg" alt="arrow" />
-                        </a>
-                    </div>
-                    <div class="flex flex-col text-center mt-6 md:mt-8 md:px-6">
-                        <h3 class="text-2.5xl md:text-3.5xl mb-3">Day Dreamer</h3>
-                        <p class="font-light text-xl leading-7 md:text-1.5xl">A natural bouquet of <i>soft blues, whites</i> and <i>creams</i>. Gorgeous <i>fresh flowers</i> arranged by your expert florist. Made using fresh <i>seasonal flowers</i>.</p>
-                        <div class="flex flex-col lg:flex-row justify-center items-center gap-5 lg:gap-3.5 mt-5">
-                            <a href="javascript:;" class="btn-primary">Buy for £25</a>
-                            <a href="javascript:;" class="btn-secondary">Subscribe - Up to 20% off</a>
-                        </div>
-                    </div>
-                </div>
-                <!-- Grid Item -->
-                <div class="flex flex-col">
-                    <div class="w-full aspect-square relative">
-                        <img class="object-cover w-full h-full" src="assets/images/flower.webp" />
-                        <a class="absolute right-5 bottom-5 z-10 active:scale-95" href="javascript:;">
-                            <img src="assets/images/svg/arrow.svg" alt="arrow" />
-                        </a>
-                    </div>
-                    <div class="flex flex-col text-center mt-6 md:mt-8 md:px-6">
-                        <h3 class="text-2.5xl md:text-3.5xl mb-3">Day Dreamer</h3>
-                        <p class="font-light text-xl leading-7 md:text-1.5xl">A natural bouquet of <i>soft blues, whites</i> and <i>creams</i>. Gorgeous <i>fresh flowers</i> arranged by your expert florist. Made using fresh <i>seasonal flowers</i>.</p>
-                        <div class="flex flex-col lg:flex-row justify-center items-center gap-5 lg:gap-3.5 mt-5">
-                            <a href="javascript:;" class="btn-primary">Buy for £25</a>
-                            <a href="javascript:;" class="btn-secondary">Subscribe - Up to 20% off</a>
-                        </div>
-                    </div>
-                </div>
-                <!-- Grid Item -->
-                <div class="flex flex-col">
-                    <div class="w-full aspect-square relative">
-                        <img class="object-cover w-full h-full" src="assets/images/flower.webp" />
-                        <a class="absolute right-5 bottom-5 z-10 active:scale-95" href="javascript:;">
-                            <img src="assets/images/svg/arrow.svg" alt="arrow" />
-                        </a>
-                    </div>
-                    <div class="flex flex-col text-center mt-6 md:mt-8 md:px-6">
-                        <h3 class="text-2.5xl md:text-3.5xl mb-3">Day Dreamer</h3>
-                        <p class="font-light text-xl leading-7 md:text-1.5xl">A natural bouquet of <i>soft blues, whites</i> and <i>creams</i>. Gorgeous <i>fresh flowers</i> arranged by your expert florist. Made using fresh <i>seasonal flowers</i>.</p>
-                        <div class="flex flex-col lg:flex-row justify-center items-center gap-5 lg:gap-3.5 mt-5">
-                            <a href="javascript:;" class="btn-primary">Buy for £25</a>
-                            <a href="javascript:;" class="btn-secondary">Subscribe - Up to 20% off</a>
+                            <div class="custom-select">
+                                <select>
+                                  <option value="0">Subscribe - Up to 20% off</option>
+                                  <option value="1">Every Week - £18.75</option>
+                                  <option value="2">Every 2 Weeks - £20.00</option>
+                                  <option value="3"> Every 4 Weeks - £22.00</option>
+                                </select>
+                              </div>
                         </div>
                     </div>
                 </div>
