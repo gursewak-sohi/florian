@@ -50,8 +50,6 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
-
 /* Swiper JS Pagination */
 
 .swiper-pagination-bullet {

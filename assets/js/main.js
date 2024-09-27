@@ -3,7 +3,7 @@
     // JS loaded
     let body = document.body;
     body.classList.add('js-loaded');
-
+    
 
     // Show Active for Desktop
     const toggleActive = () => {
@@ -64,6 +64,8 @@
             tOut = setTimeout(refresh, 100);
         }
     };
+
+
 
     // Gallery Swiper
     const gallerySwiper = document.querySelector("#gallerySwiper"),
