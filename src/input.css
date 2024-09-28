@@ -111,6 +111,10 @@
   @apply relative w-full lg:max-w-[252px] cursor-pointer
 }
 
+.custom-select.custom-select-input {
+  @apply relative w-full bg-white lg:max-w-none cursor-pointer rounded-md
+}
+
 .custom-select select {
   @apply hidden
 }
@@ -119,13 +123,29 @@
   @apply uppercase bg-transparent border border-black text-center w-full p-4 text-black rounded-full font-roboto text-[15px] leading-[14px] tracking-wider duration-300 hover:bg-black hover:text-white whitespace-nowrap active:scale-95
 }
 
+.custom-select-input .select-selected {
+  @apply capitalize tracking-tight bg-transparent border-none text-left w-full px-4 py-3 text-black rounded-full font-roboto text-base duration-300 hover:bg-transparent hover:text-black whitespace-nowrap active:scale-100
+}
+
+.custom-select-input .select-selected.placeholder {
+    @apply text-black/50
+}
+
 .select-items div {
    @apply uppercase bg-transparent text-center w-full p-4 text-black  font-roboto text-[15px] leading-[14px] tracking-wider duration-300 hover:bg-black hover:text-white whitespace-nowrap
+}
+
+.custom-select-input .select-items div {
+  @apply capitalize bg-transparent border-none text-left w-full px-3 py-2 text-black rounded-md font-roboto text-base tracking-normal duration-300 hover:bg-gray-100 hover:text-black whitespace-nowrap active:scale-100
 }
 
 /*style items (options):*/
 .select-items {
   @apply absolute bg-white top-full left-0 right-0 z-50 border border-black rounded-2xl overflow-hidden
+}
+
+.custom-select-input .select-items {
+  @apply absolute bg-white top-full left-0 right-0 z-50 mt-1 border-none rounded-md overflow-hidden p-1 shadow-md
 }
 
 /*hide the items when the select box is closed:*/
@@ -134,3 +154,6 @@
 }
 
  
+.input {
+  @apply tracking-tight bg-white w-full px-4 py-3 text-black rounded-md font-roboto text-base placeholder:text-black/50 focus:outline-none
+}

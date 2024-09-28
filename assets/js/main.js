@@ -120,6 +120,9 @@
         /*for each element, create a new DIV that will act as the selected item:*/
         a = document.createElement("DIV");
         a.setAttribute("class", "select-selected");
+        if (selElmnt.selectedIndex === 0) {
+            a.classList.add("placeholder");
+        }
         a.innerHTML = selElmnt.options[selElmnt.selectedIndex].innerHTML;
         x[i].appendChild(a);
         /*for each element, create a new DIV that will contain the option list:*/
@@ -130,6 +133,9 @@
             create a new DIV that will act as an option item:*/
             c = document.createElement("DIV");
             c.innerHTML = selElmnt.options[j].innerHTML;
+            if (j === selElmnt.selectedIndex) {
+                c.setAttribute("class", "same-as-selected");
+            }
             c.addEventListener("click", function(e) {
                 /*when an item is clicked, update the original select box,
                 and the selected item:*/
@@ -141,6 +147,7 @@
                 if (s.options[i].innerHTML == this.innerHTML) {
                     s.selectedIndex = i;
                     h.innerHTML = this.innerHTML;
+                    h.classList.remove("placeholder");
                     y = this.parentNode.getElementsByClassName("same-as-selected");
                     yl = y.length;
                     for (k = 0; k < yl; k++) {

@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Florian</title>
+    <link rel="shortcut icon" href="./favicon.svg" />
+    <!-- Swiper JS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css" />
+    <!-- Main CSS -->
+    <link href="./assets/css/style.css" rel="stylesheet" />
+</head>
+
+<body class="bg-primary-600 text-base tracking-tight antialiased">
+    <!-- Header Section -->
+     <header class="border-b border-dark-300 py-6 flex justify-center items-center">
+        <a href="index.html">
+          <img src="assets/images/svg/logo-dark.svg" alt="" />
+        </a>
+     </header>
+
+    <!-- Content Section -->
+    <section class="bg-primary-600">
+        <div class="max-w-screen-lg w-full mx-auto pt-7 pb-14 md:pt-12 md:pb-24 px-5 md:px-10 lg:px-20">
+            <div class="max-w-[922px] mx-auto flex flex-col gap-4 md:gap-5 text-center px-2 md:px-0">
+                <h1 class="font-light text-2.5xl md:text-3.5xl">Shipping Address</h1>
+                <p class="text-[15px] md:text-1.1xl font-roboto">We can only deliver within 10 miles of RG27 8JW</p>
+            </div>
+           <div class="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-y-8 gap-x-14 mt-10 md:mt-16">
+              <div class="flex flex-col gap-2">
+                <label class="text-sm md:text-base font-roboto" for="title">Title</label>
+                <div class="custom-select custom-select-input">
+                  <select>
+                    <option value="0">Select your title</option>
+                    <option value="1">Title 1</option>
+                    <option value="2">Title 2</option>
+                  </select>
+                </div>
+              </div>
+              <div class="flex flex-col gap-2">
+                <label class="text-sm md:text-base font-roboto" for="name">Name</label>
+                <input type="text" class="input" placeholder="Name" />
+              </div>
+              <div class="flex flex-col gap-2">
+                <label class="text-sm md:text-base font-roboto" for="address-line-1">Address Line 1</label>
+                <input type="text" class="input" placeholder="Eg. 123 Main St" />
+              </div>
+              <div class="flex flex-col gap-2">
+                <label class="text-sm md:text-base font-roboto" for="address-line-2">Address Line 2</label>
+                <input type="text" class="input" placeholder="Optional" />
+              </div>
+              <div class="flex flex-col gap-2">
+                <label class="text-sm md:text-base font-roboto" for="town">Town</label>
+                <input type="text" class="input" placeholder="Town Name" /> 
+              </div>
+              <div class="flex flex-col gap-2">
+                <label class="text-sm md:text-base font-roboto" for="postcode">Postcode</label>
+                <input type="text" class="input" placeholder="Postcode" /> 
+              </div>
+                <div class="md:col-span-2 flex items-center gap-3">
+                    <div class="relative flex">
+                        <input type="checkbox" id="same-address" class="peer appearance-none w-5 h-5 rounded bg-white checked:bg-white focus:outline-none focus:ring-offset-0" />
+                        <svg class="absolute w-3.5 h-3.5 top-[3px] left-[3px] hidden peer-checked:block pointer-events-none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="black" stroke-width="4" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="20 6 9 17 4 12"></polyline>
+                        </svg>
+                    </div>
+                    <label for="same-address" class="text-base font-roboto cursor-pointer">Use same address as billing?</label>
+                </div>
+                <div class="md:col-span-2">
+                    <button class="btn btn-primary">Confirm Addresses</button>
+                </div>
+           </div>
+        </div>
+    </section>
+
+    <!-- Footer Section -->
+    <footer class="bg-primary-700 pt-12 pb-8 text-black lg:pb-12">
+        <div class="mx-auto max-w-3xl px-5 lg:px-8 xl:px-14">
+            <div class="grid grid-cols-1 lg:grid-cols-2">
+                <div class="mb-12 flex flex-col items-start border-b border-dark-300 pr-0 lg:mb-0 lg:border-b-0 lg:border-r lg:pr-8 xl:pr-14 2xl:pr-20">
+                    <h3 class="mb-8 text-1.5xl font-light">
+                        <span class="font-normal">Florians Botanical Ltd</span> is owned by Hampshire based <br class="hidden lg:inline" /> Horticulturist, Michelle Washington-Jenkins. <br /><br /> Supplier of <em>plants, flowers</em> and other
+                        <em>botanical miscellanea</em>
+                        <br class="hidden xl:inline" /> by appointment only.
+                    </h3>
+                    <div class="mt-auto hidden w-full items-end lg:flex">
+                        <div class="mr-2 xl:mr-10">
+                            <img src="assets/images/svg/logo-footer.svg" alt="" />
+                        </div>
+                        <p class="font-roboto text-sm uppercase">
+                            © 2023 Florians Botanical Ltd
+                        </p>
+                        <a href="javascript:;" class="ml-auto font-roboto text-sm uppercase underline">Hartley Wintney, RG27 8JW</a>
+                    </div>
+                </div>
+                <div class="flex flex-col pl-0 lg:pl-8 xl:pl-14 2xl:pl-20">
+                    <div class="mb-12 flex items-center text-1.5xl">
+                        <div class="flex flex-col border-b border-dark-300 pb-7 lg:border-b-0 lg:pb-0 xl:flex-row xl:items-center">
+                            <div class="mr-3 font-light">Next Workshop:</div>
+                            <a class="flex items-center gap-5" href="javascript:;">
+                                <div>
+                                    Wreath Making
+                                    <span class="font-light">(View at EventBrite)</span>
+                                </div>
+                                <img src="assets/images/svg/link.svg" alt="link" />
+                            </a>
+                        </div>
+                        <a class="ml-auto hidden lg:flex" target="_blank" href="javascript:;">
+                            <img src="assets/images/svg/instagram.svg" alt="instagram" />
+                        </a>
+                    </div>
+                    <div class="mb-12 flex flex-col lg:mb-20">
+                        <label class="mb-9 text-1.5xl font-light">For the <em>latest news</em> and updates please <br /> subscribe to our newsletter</label>
+                        <form class="flex w-full max-w-md items-center gap-5 border-b border-dark-300">
+                            <input placeholder="Email Address" type="email" class="flex-1 bg-transparent py-2.5 font-roboto text-sm uppercase text-black placeholder:text-black/50 focus:outline-none" />
+                            <button type="submit" class="text-[23px] italic leading-7">Subscribe</button>
+                        </form>
+                    </div>
+                    <div class="hidden items-end justify-between lg:flex">
+                        <a href="index.html">
+                            <img src="assets/images/svg/logo-dark.svg" alt="logo" />
+                        </a>
+                        <img width="96" height="44" class="mix-blend-multiply" src="assets/images/svg/RHS.png" alt="RHS" />
+                    </div>
+                    <div class="mb-7 flex flex-col items-center border-b border-dark-300 pb-7 lg:hidden lg:border-b-0 lg:pb-0">
+                        <img width="96" height="44" class="mb-7 mix-blend-multiply" src="assets/images/svg/RHS.png" alt="RHS" />
+                        <a href="javascript:;" class="font-roboto text-sm uppercase underline">Hartley Wintney, RG27 8JW</a>
+                    </div>
+                    <div class="flex flex-col items-center gap-7 lg:hidden">
+                        <img src="assets/images/svg/logo-footer.svg" alt="logo" />
+                        <img src="assets/images/svg/logo-dark.svg" alt="logo" />
+                        <p class="font-roboto text-sm uppercase">
+                            © 2023 Florians Botanical Ltd
+                        </p>
+                        <a target="_blank" href="javascript:;">
+                            <img src="assets/images/svg/instagram.svg" alt="instagram" />
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+<!-- Swiper JS -->
+<script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
+<!-- Main JS -->
+<script type="text/javascript" src="assets/js/main.js"></script>
+
+</html>
