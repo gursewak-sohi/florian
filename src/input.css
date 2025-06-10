@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap');
 
 @font-face {
   font-family: 'Lyon Display';
@@ -68,19 +69,28 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-/* Swiper JS Pagination */
 
-.swiper-pagination-bullet {
- @apply !bg-transparent px-3 opacity-50 inline-block
+
+:root {
+  --swiper-pagination-bullet-horizontal-gap : 5px;
 }
 
+/* Swiper JS Pagination */
+.swiper-pagination-bullet {
+ @apply w-[13px] h-px opacity-50 bg-black rounded-none duration-200
+} 
+
 .swiper-pagination-bullet.swiper-pagination-bullet-active {
-  @apply opacity-100 underline
+  @apply opacity-100 w-5
 }
 
 /* Swiper Styling */
 .text-below-img {
     @apply bottom-0;
+}
+
+.text-below-img a {
+  @apply underline hover:no-underline;
 }
 
 .swiper-button-prev,
@@ -94,7 +104,7 @@
 }
 
 .swiper-video video, iframe {
-    @apply absolute top-0 left-0 bottom-0 right-0 w-full h-full border-0;
+  @apply absolute top-0 left-0 bottom-0 right-0 w-full h-full border-0;
 }
 
 .display-swiper .swiper-button-disabled {
@@ -115,18 +125,22 @@
         bottom: -15px;
     }
 }
-
+/* lg:max-w-[252px] */
 .btn-primary {
-  @apply uppercase bg-black border border-black text-center w-full lg:max-w-[252px] p-4 text-white rounded-full font-roboto text-[15px] leading-[14px] tracking-wider duration-300 hover:bg-white hover:text-black whitespace-nowrap active:scale-95
+  @apply uppercase bg-black border border-black text-center w-full p-4 text-white rounded-full font-roboto text-[15px] leading-[14px] tracking-wider duration-300 hover:bg-white hover:text-black whitespace-nowrap active:scale-95
 }
 
 .btn-secondary {
   @apply  uppercase bg-transparent border border-black text-center w-full lg:max-w-[252px] p-4 text-black rounded-full font-roboto text-[15px] leading-[14px] tracking-wider duration-300 hover:bg-black hover:text-white whitespace-nowrap active:scale-95
 }
 
+.btn-primary-sm {
+  @apply uppercase shrink-0 w-[129px] gap-1.5 pt-px h-8 bg-black border border-black text-center text-white rounded-full font-roboto-condensed text-[15px] leading-[23px] duration-300 hover:bg-white hover:text-black whitespace-nowrap active:scale-95 flex items-center justify-center
+}
+
 /* Custom Select */
 .custom-select {
-  @apply relative w-full lg:max-w-[252px] cursor-pointer
+  @apply relative w-full lg:max-w-[252px] cursor-pointer min-w-[200px];
 }
 
 .custom-select-arrow {
@@ -170,4 +184,15 @@
  
 .input {
   @apply tracking-tight bg-white w-full px-4 py-3 text-black rounded-md font-roboto text-base placeholder:text-black/50 focus:outline-none
+}
+
+.snippets-modal__title {
+  @apply !font-light !text-2.5xl;
+}
+
+.required-text:after {
+    content: '*';
+    color: #eb4d4b;
+    /*margin-left: 0.3rem;*/
+    font-weight: bold;
 }

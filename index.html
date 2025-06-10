@@ -10,379 +10,478 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.css" />
     <!-- Main CSS -->
     <link href="./assets/css/style.css" rel="stylesheet" />
+    <!-- Apline JS -->
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
 </head>
 
-<body class="bg-black text-base tracking-tight antialiased">
-    <!-- Hero Section -->
-    <section class="relative overflow-hidden bg-cover bg-center text-white lg:pt-10 lg:pb-14 lg:flex lg:flex-col lg:h-screen">
-        <div class="mx-auto max-w-3xl lg:px-8 xl:px-14 flex-1 flex flex-col">
-            <div class="flex flex-col justify-between flex-1">
-                <div class="absolute inset-x-0 top-10 z-10 flex flex-col justify-between gap-y-36 px-5 lg:static lg:flex-row lg:px-0">
-                    <a href="index.html">
-                        <img src="assets/images/svg/logo.svg" alt="logo" />
+<body x-data="menuData()" class="bg-white text-base text-black antialiased">
+        <!-- Mobile Menu -->
+        <div
+        x-show="isMenuOpen"
+        x-transition:enter="transition-transform duration-300"
+        x-transition:enter-start="-translate-x-full"
+        x-transition:enter-end="translate-x-0"
+        x-transition:leave="transition-transform duration-300"
+        x-transition:leave-start="translate-x-0"
+        x-transition:leave-end="-translate-x-full"
+        class="fixed inset-0 z-50 w-full bg-white flex lg:hidden flex-col transform"
+        @keydown.escape.window="isMenuOpen = false"
+        >
+        <div class="flex  flex-col justify-between pt-6 pb-12 px-3.5 flex-1">
+            <div class="flex pb-20" >
+                <!-- Back Button Sub-Menu -->
+                <button 
+                    @click="activeSub = ''" 
+                    x-show="activeSub !== ''" 
+                    class="font-roboto-condensed text-base flex items-center uppercase gap-1.5" 
+                    type="button"
+                    x-transition:enter="transition ease-out duration-300"
+                    x-transition:enter-start="opacity-0 translate-x-8"
+                    x-transition:enter-end="opacity-100 translate-x-0">
+                    <div>
+                        <img src="assets/images/svg/arrow-left-dark.svg" alt="back" />
+                    </div>
+                    <span x-text="activeSub"></span>
+                </button>
+                <button class="ml-auto" type="button" @click="isMenuOpen = false">
+                    <img src="assets/images/svg/hide-menu.svg" alt="hide" />
+                </button>
+            </div>
+
+            <!-- Main Menu -->
+            <ul 
+                x-show="activeSub === ''" 
+                class="text-5xl leading-[48px] font-light overflow-hidden"
+                x-transition:enter="transition ease-out duration-300"
+                x-transition:enter-start="opacity-0 -translate-x-8"
+                x-transition:enter-end="opacity-100 translate-x-0">
+                <template x-for="menu in menus" :key="menu.title">
+                <li>
+                    <template x-if="menu.items.length">
+                    <button @click="activeSub = menu.title" class="w-full text-left flex items-center justify-between uppercase">
+                        <span x-text="menu.title"></span>
+                        <img class="-mt-1" src="assets/images/svg/arrow-right-dark.svg" alt="link" />
+                    </button>
+                    </template>
+                    <template x-if="!menu.items.length">
+                    <a :href="menu.url" class="flex items-center justify-between uppercase">
+                        <span x-text="menu.title"></span>
                     </a>
-                    <div class="text-right text-1.5xl leading-8">
-                        Supplier of <em>plants, flowers</em> and <br /> other <em>botanical miscellanea</em></span>
-                    </div>
+                    </template>
+                </li>
+                </template>
+            </ul>
+
+            <!-- Submenus -->
+            <template x-for="menu in menus" :key="menu.title">
+                <div x-show="activeSub === menu.title"
+                    x-transition:enter="transition ease-out duration-300"
+                    x-transition:enter-start="opacity-0 translate-x-8"
+                    x-transition:enter-end="opacity-100 translate-x-0"
+                    class="overflow-hidden">
+                <ul class="flex flex-col gap-7 text-[28px] leading-6 font-light whitespace-nowrap">
+                    <template x-for="item in menu.items" :key="item.label">
+                    <li class="truncate">
+                        <a class="truncate py-0.5 block" :href="item.url" x-text="item.label"></a>
+                    </li>
+                    </template>
+                </ul>
                 </div>
-                <!-- Shop button -->
-                 <div class="absolute top-[26px] z-20 lg:left-1/2 lg:-translate-x-1/2 right-5 lg:right-auto">
-                    <a href="#shop" class="w-[76px] lg:w-[93px] h-12 border border-white rounded-full text-xl lg:text-1.5xl italic flex items-center justify-center hover:bg-white hover:text-black duration-300 active:scale-95">Shop</a>
-                 </div>
-                 <a href=""></a>
-                <!-- Slider main container -->
-                <div id="toggleSwiper" class="swiper static z-auto mx-0 overflow-visible lg:mt-40 lg:mb-28 lg:flex lg:flex-col lg:flex-1">
-                    <!-- Additional required wrapper -->
-                    <div id="toggleBlock" class="swiper-wrapper static lg:grid lg:h-96 lg:transform-none lg:grid-cols-4 flex-1">
-                        <!-- Slides -->
-                        <div class="swiper-slide swiper-slide-active group static border-dark-500/30 lg:border-x">
-                            <a class="group flex h-screen w-full flex-col items-center justify-end px-3 pb-60 text-center lg:h-full lg:pb-0" href="gallery.html">
-                                <div class="translate-y-12 opacity-50 duration-500 group-[.swiper-slide-active]:translate-y-2 group-[.swiper-slide-active]:opacity-100">
-                                    <h2 class="mb-3 font-non-old text-4.5xl">Residential</h2>
-                                    <p class="font-roboto text-[15px] uppercase leading-5 lg:mb-8">
-                                        plants, flowers
-                                    </p>
-                                    <div class="hidden text-1.5xl italic underline opacity-0 duration-500 group-[.swiper-slide-active]:opacity-100 lg:block">
-                                        View
-                                    </div>
-                                </div>
-                                <div class="absolute inset-0 -z-10 opacity-0 duration-1000 group-[.swiper-slide-active]:opacity-100 pointer-events-none">
-                                    <img class="h-full w-full object-cover" src="assets/images/AdobeStock_367073776.webp" alt="cover" />
-                                </div>
-                            </a>
-                        </div>
-                        <div class="swiper-slide group static border-dark-500/30 lg:border-r">
-                            <a class="flex h-screen w-full flex-col items-center justify-end px-3 pb-60 text-center lg:h-full lg:pb-0" href="gallery.html">
-                                <div class="translate-y-12 opacity-50 duration-500 group-[.swiper-slide-active]:translate-y-2 group-[.swiper-slide-active]:opacity-100">
-                                    <h2 class="mb-3 font-non-old text-4.5xl">
-                                        Corporate / Events
-                                    </h2>
-                                    <p class="font-roboto text-[15px] uppercase leading-5 lg:mb-8">
-                                        plants, flowers
-                                    </p>
-                                    <div class="hidden text-1.5xl italic underline opacity-0 duration-500 group-[.swiper-slide-active]:opacity-100 lg:block">
-                                        View
-                                    </div>
-                                </div>
-                                <div class="absolute inset-0 -z-10 opacity-0 duration-1000 group-[.swiper-slide-active]:opacity-100 pointer-events-none">
-                                    <img class="h-full w-full object-cover" src="assets/images/cody-west-ah0i1Hsj4KM-unsplash.webp" alt="cover" />
-                                </div>
-                            </a>
-                        </div>
-                        <div class="swiper-slide group static border-dark-500/30 lg:border-r">
-                            <a class="flex h-screen w-full flex-col items-center justify-end px-3 pb-60 text-center lg:h-full lg:pb-0" href="gallery.html">
-                                <div class="translate-y-12 opacity-50 duration-500 group-[.swiper-slide-active]:translate-y-2 group-[.swiper-slide-active]:opacity-100">
-                                    <h2 class="mb-3 font-non-old text-4.5xl">#Follow</h2>
-                                    <p class="font-roboto text-[15px] uppercase leading-5 lg:mb-8">
-                                        plants, flowers
-                                    </p>
-                                    <div class="hidden text-1.5xl italic underline opacity-0 duration-500 group-[.swiper-slide-active]:opacity-100 lg:block">
-                                        View
-                                    </div>
-                                </div>
-                                <div class="absolute inset-0 -z-10 opacity-0 duration-1000 group-[.swiper-slide-active]:opacity-100 pointer-events-none">
-                                    <video class="h-full w-full object-cover" poster="assets/images/AdobeStock_367073776.webp" muted playsinline autoplay loop src="assets/videos/sample.mp4"></video>
-                                </div>
-                            </a>
-                        </div>
-                        <div class="swiper-slide group static border-dark-500/30 lg:border-r">
-                            <a class="flex h-screen w-full flex-col items-center justify-end pb-60 text-center lg:h-full lg:pb-0" href="gallery.html">
-                                <div class="translate-y-12 opacity-50 duration-500 group-[.swiper-slide-active]:translate-y-2 group-[.swiper-slide-active]:opacity-100">
-                                    <h2 class="mb-3 font-non-old text-4.5xl">Contact</h2>
-                                    <p class="font-roboto text-[15px] uppercase leading-5 lg:mb-8">
-                                        plants, flowers
-                                    </p>
-                                    <div class="hidden text-1.5xl italic underline opacity-0 duration-500 group-[.swiper-slide-active]:opacity-100 lg:block">
-                                        View
-                                    </div>
-                                </div>
-                                <div class="absolute inset-0 -z-10 opacity-0 duration-1000 group-[.swiper-slide-active]:opacity-100 pointer-events-none">
-                                    <img class="h-full w-full object-cover" src="assets/images/cody-west-ah0i1Hsj4KM-unsplash.webp" alt="cover" />
-                                </div>
-                            </a>
+            </template>
+
+            <!-- Footer -->
+            <div class="flex flex-col gap-9 pt-10">
+                <p class="font-roboto text-sm">
+                Contact: <br />
+                michelle@florains.co.uk / 07843 784432 <br />
+                Hartley Wintney, RG27 8JW <br />
+                © 2025 Florians Botanic Ltd
+                </p>
+                <a href="index.html">
+                <img width="176" height="20" src="assets/images/svg/logo-dark.svg" alt="logo" />
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Header  -->
+     <header class="px-3 lg:px-10 bg-white h-16 lg:h-[80px] grid items-center grid-cols-4 sm:grid-cols-3 sticky top-0 z-40">
+       <!-- Desktop Menu -->
+        <ul class="hidden lg:flex items-center gap-7 text-[15px] leading-6 uppercase">
+            <template x-for="menu in menus" :key="menu.title">
+            <li class="group border-b border-transparent hover:border-dark-400 duration-300 relative">
+                <!-- Parent link with dropdown -->
+                <template x-if="menu.items.length > 0">
+                    <div>
+                        <a href="javascript:;" class="flex items-center gap-[5px]">
+                            <span x-text="menu.title"></span>
+                            <img class="relative -top-px duration-300 group-hover:-rotate-180" src="assets/images/svg/arrow-down.svg" alt="arrow" />
+                        </a>
+                        <!-- Dropdown -->
+                        <div class="pt-8 absolute top-5 left-0 z-10 invisible duration-300 opacity-0 group-hover:visible group-hover:opacity-100">
+                            <ul class="w-[338px] bg-white p-5 flex flex-col gap-6 font-roboto-condensed text-base">
+                            <template x-for="item in menu.items" :key="item.label">
+                                <li>
+                                    <a
+                                    :href="item.url"
+                                    class="flex items-center gap-[5px] before:content-arrowRightIcon before:size-0 hover:before:size-5 before:scale-0 hover:before:scale-100 before:duration-300 before:origin-top"
+                                    x-text="item.label"></a>
+                                </li>
+                            </template>
+                        </ul>
                         </div>
                     </div>
-                    <!-- If we need pagination -->
-                    <div class="swiper-pagination block lg:hidden !inset-x-5 !bottom-32 !w-auto border-b border-white/30 pb-4 font-roboto text-[15px] lg:border-none"></div>
+                </template>
+        
+                <!-- Simple link without dropdown -->
+                <template x-if="menu.items.length === 0">
+                <a :href="menu.url" x-text="menu.title"></a>
+                </template>
+            </li>
+            </template>
+        </ul>
+        <div class="flex lg:hidden justify-start items-center gap-7">
+            <button @click="isMenuOpen = true" type="button">
+                <img src="assets/images/svg/menu.svg" alt="menu"/>
+            </button>
+        </div>
+        <div class="flex justify-center items-center col-span-2 sm:col-span-1">
+            <a href="index.html">
+                <img width="176" height="20" src="assets/images/svg/logo-dark.svg" alt="logo" />
+            </a>
+        </div>
+        <div class="flex justify-end items-center gap-2 lg:gap-7">
+            <a href="javascript:;">
+                <img src="assets/images/svg/account.svg" alt="account"/>
+            </a>
+            <a href="javascript:;">
+                <img src="assets/images/svg/cart.svg" alt="cart"/>
+            </a>
+        </div>
+     </header>
+
+    <!-- Hero Section -->
+    <section x-data="{ isPlaying: false }" class="px-3.5 lg:px-5 text-white font-roboto-condensed text-lg font-normal uppercase">
+        <div class="relative aspect-square lg:aspect-auto lg:h-[calc(100vh_-100px)] lg:min-h-[700px] max-h-[calc(100vh_-100px)] w-full bg-red-100">
+            <div class="absolute size-full inset-0 cursor-pointer bg-black">
+                <!-- Image -->
+                <!-- <img class="object-cover size-full" src="assets/images/hero.webp" alt="hero" /> -->
+
+                <!-- Video -->
+                <video
+                    x-ref="heroVideo"
+                    @click="isPlaying ? $refs.heroVideo.pause() : $refs.heroVideo.play(); isPlaying = !isPlaying"
+                    poster="assets/images/hero.webp"
+                    class="object-cover size-full"
+                    muted
+                    loop
+                    playsinline
+                >
+                    <source src="assets/videos/sample.mp4" type="video/mp4" />
+                    Your browser does not support the video tag.
+            </video>
+            </div>
+
+            <!-- Top text -->
+            <div class="text-[15px] lg:text-lg absolute left-1/2 -translate-x-1/2 top-5 text-center whitespace-nowrap pointer-events-none">The Art of Growing Flowers</div>
+
+            <!-- Play/Pause -->
+            <div class="text-[15px] absolute left-1/2 -translate-x-1/2 bottom-5 lg:bottom-auto lg:top-1/2 lg:-translate-y-1/2 text-center whitespace-nowrap pointer-events-none">
+                <span x-text="isPlaying ? 'Pause' : 'Play'"></span>
+            </div>
+
+            <!-- Navigation Grid -->
+            <div class="hidden lg:grid grid-cols-4 absolute bottom-12 inset-x-0 px-7 h-20 ">
+                <div class="border-r border-white px-7 flex items-end">
+                    <a class="flex items-center gap-1.5 group" href="javascript:;">Flowers <img class="group-hover:translate-x-1 duration-300" src="assets/images/svg/arrow-right.svg" alt="arrow"></a>
                 </div>
-                <div class="absolute inset-x-0 bottom-12 z-10 px-5 text-center text-1.5xl lg:static lg:px-0 lg:text-left">
-                    Contact us:
-                    <a class="underline" href="mailto:michelle@florians.co.uk">michelle@florians.co.uk</a>
+                <div class="border-r border-white px-7 flex items-end">
+                    <a class="flex items-center gap-1.5 group" href="javascript:;">workshop <img class="group-hover:translate-x-1 duration-300" src="assets/images/svg/arrow-right.svg" alt="arrow"></a>
+                </div>
+                <div class="border-r border-white px-7 flex items-end">
+                    <a class="flex items-center gap-1.5 group" href="javascript:;">Lookbook <img class="group-hover:translate-x-1 duration-300" src="assets/images/svg/arrow-right.svg" alt="arrow"></a>
+                </div>
+                <div class="px-7 flex items-end">
+                    <a class="flex items-center gap-1.5 group" href="javascript:;">journal <img class="group-hover:translate-x-1 duration-300" src="assets/images/svg/arrow-right.svg" alt="arrow"></a>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Content Section -->
-    <section id="shop" class="bg-primary-600">
-        <div class="max-w-screen-2xl w-full mx-auto pt-7 pb-14 md:pt-12 md:pb-24 px-5 md:px-8">
-            <div class="max-w-[922px] mx-auto flex flex-col gap-4 md:gap-5 text-center px-2 md:px-0">
-                <h1 class="font-light text-2.5xl md:text-3.5xl">A place of <i>calm</i>, in tune with <i>nature</i> and living <i>positively</i>.</h1>
-                <p class="text-[15px] md:text-1.1xl font-roboto">We have created our ‘off the rack’ collection for the more relaxed couples out there. The collection is perfect for couples getting married at the registry office or having a relaxed small wedding that doesn’t want any of the stress</p>
+    <section class="px-3.5 lg:px-5 py-16 lg:py-20">
+        <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-y-16 gap-x-5">
+            <!-- Grid Item -->
+            <div class="flex flex-col display-swiper">
+                <div class="flex items-center px-0 md:px-5 justify-between leading-3 pb-3">
+                    <h2 class="text-lg leading-3">Mixed Flowers for the Home</h2>
+                    <h4 class="text-[15px] font-roboto uppercase">£50</h4>
+                </div>
+                <div class="swiper w-full relative group">
+                    <!-- Additional required wrapper -->
+                    <div class="swiper-wrapper">
+                        <!-- Slides -->
+                        <div class="swiper-slide">
+                            <div class="w-full aspect-[455/521]">
+                                <img class="object-cover w-full h-full" src="assets/images/flower.webp" />
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="w-full aspect-[455/521]">
+                                <img class="object-cover w-full h-full" src="assets/images/AdobeStock_367073776.webp" />
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="w-full aspect-[455/521]">
+                                <video class="h-full w-full object-cover" poster="assets/images/AdobeStock_367073776.webp" muted playsinline autoplay loop src="assets/videos/florian.mp4"></video>
+                            </div>
+                        </div>
+                    </div>
+                   <div class="absolute bg-white inset-0 z-10 opacity-0 group-hover:opacity-100 border-y border-dark-400 duration-300">
+                        <p class="text-[17px] font-roboto leading-6 px-5 py-10 opacity-0 group-hover:opacity-100 translate-y-5 group-hover:-translate-y-0 duration-300">We will pick a selection of 50 seasonal flowers grown sustainably at Florians in Hampshire for collection or local delivery to arrange yourself at home. Flowers will be prepared freshly cut in containers or brown paper.</p>
+                   </div>
+                </div>
+                <div class="flex items-center justify-between pt-3 lg:px-5">
+                    <a href="javascript:;" class="btn-primary-sm">Buy</a>
+                     <!-- If we need pagination -->
+                     <div class="swiper-pagination static flex justify-end"></div>
+                </div>
             </div>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-x-10 xl:gap-x-16 gap-y-20 mt-7 md:mt-10">
-                <!-- Grid Item -->
-                <div class="flex flex-col">
-                    <div class="swiper display-swiper w-full">
-                        <!-- Additional required wrapper -->
-                        <div class="swiper-wrapper">
-                            <!-- Slides -->
-                            <div class="swiper-slide">
-                                <div class="w-full aspect-square">
-                                    <img class="object-cover w-full h-full" src="assets/images/flower.webp" />
-                                </div>
-                            </div>
-                            <div class="swiper-slide">
-                                <div class="w-full aspect-square">
-                                    <img class="object-cover w-full h-full" src="assets/images/AdobeStock_367073776.webp" />
-                                </div>
-                            </div>
-                            <div class="swiper-slide">
-                                <div class="w-full aspect-square">
-                                    <video class="h-full w-full object-cover" poster="assets/images/AdobeStock_367073776.webp" muted playsinline autoplay loop src="assets/videos/florian.mp4"></video>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- If we need navigation buttons -->
-                        <button class="swiper-button-prev absolute h-auto left-5 top-auto bottom-5 z-10 active:scale-95 after:hidden" type="button">
-                            <img class="rotate-180" src="assets/images/svg/arrow.svg" alt="arrow" />
-                        </button>
-                        <button class="swiper-button-next absolute h-auto right-5 top-auto bottom-5 z-10 active:scale-95 after:hidden" type="button">
-                            <img src="assets/images/svg/arrow.svg" alt="arrow" />
-                        </button>
-                    </div>
-                    <div class="flex flex-col text-center mt-6 md:mt-8 md:px-6">
-                        <h3 class="text-2.5xl md:text-3.5xl mb-3">Day Dreamer</h3>
-                        <p class="font-light text-xl leading-7">A natural bouquet of <i>soft blues, whites</i> and <i>creams</i>. Gorgeous <i>fresh flowers</i> arranged by your expert florist. Made using fresh <i>seasonal flowers</i>.</p>
-                        <div class="flex flex-col lg:flex-row justify-center items-center gap-5 lg:gap-3.5 mt-5">
-                            <a href="javascript:;" class="btn-primary">Buy for £25</a>
-                            <div class="custom-select">
-                                <select>
-                                  <option value="0">Subscribe - Up to 20% off</option>
-                                  <option value="1">Every Week - £18.75</option>
-                                  <option value="2">Every 2 Weeks - £20.00</option>
-                                  <option value="3"> Every 4 Weeks - £22.00</option>
-                                </select>
-                              </div>
-                        </div>
-                    </div>
-                </div>
 
-                <!-- Grid Item -->
-                <div class="flex flex-col">
-                    <div class="swiper display-swiper w-full">
-                        <!-- Additional required wrapper -->
-                        <div class="swiper-wrapper">
-                            <!-- Slides -->
-                            <div class="swiper-slide">
-                                <div class="w-full aspect-square">
-                                    <video class="h-full w-full object-cover" poster="assets/images/AdobeStock_367073776.webp" muted playsinline autoplay loop src="assets/videos/florian.mp4"></video>
-                                </div>
-                            </div>
-                            <div class="swiper-slide">
-                                <div class="w-full aspect-square">
-                                    <img class="object-cover w-full h-full" src="assets/images/flower.webp" />
-                                </div>
-                            </div>
-                            <div class="swiper-slide">
-                                <div class="w-full aspect-square">
-                                    <img class="object-cover w-full h-full" src="assets/images/AdobeStock_367073776.webp" />
-                                </div>
-                            </div>
-                        </div>
-                        <!-- If we need navigation buttons -->
-                        <button class="swiper-button-prev absolute h-auto left-5 top-auto bottom-5 z-10 active:scale-95 after:hidden" type="button">
-                            <img class="rotate-180" src="assets/images/svg/arrow.svg" alt="arrow" />
-                        </button>
-                        <button class="swiper-button-next absolute h-auto right-5 top-auto bottom-5 z-10 active:scale-95 after:hidden" type="button">
-                            <img src="assets/images/svg/arrow.svg" alt="arrow" />
-                        </button>
-                    </div>
-                    <div class="flex flex-col text-center mt-6 md:mt-8 md:px-6">
-                        <h3 class="text-2.5xl md:text-3.5xl mb-3">Day Dreamer</h3>
-                        <p class="font-light text-xl leading-7">A natural bouquet of <i>soft blues, whites</i> and <i>creams</i>. Gorgeous <i>fresh flowers</i> arranged by your expert florist. Made using fresh <i>seasonal flowers</i>.</p>
-                        <div class="flex flex-col lg:flex-row justify-center items-center gap-5 lg:gap-3.5 mt-5">
-                            <a href="javascript:;" class="btn-primary">Buy for £25</a>
-                            <div class="custom-select">
-                                <select>
-                                  <option value="0">Subscribe - Up to 20% off</option>
-                                  <option value="1">Every Week - £18.75</option>
-                                  <option value="2">Every 2 Weeks - £20.00</option>
-                                  <option value="3"> Every 4 Weeks - £22.00</option>
-                                </select>
-                              </div>
-                        </div>
-                    </div>
+            <!-- Grid Item -->
+            <div class="flex flex-col display-swiper">
+                <div class="flex items-center px-0 md:px-5 justify-between leading-3 pb-3">
+                    <h2 class="text-lg leading-3">Mixed Flowers for a Small Event</h2>
+                    <h4 class="text-[15px] font-roboto uppercase">£90</h4>
                 </div>
-
-                 <!-- Grid Item -->
-                 <div class="flex flex-col">
-                    <div class="swiper display-swiper w-full">
-                        <!-- Additional required wrapper -->
-                        <div class="swiper-wrapper">
-                            <!-- Slides -->
-                            <div class="swiper-slide">
-                                <div class="w-full aspect-square">
-                                    <img class="object-cover w-full h-full" src="assets/images/AdobeStock_367073776.webp" />
-                                </div>
-                            </div>
-                            <div class="swiper-slide">
-                                <div class="w-full aspect-square">
-                                    <img class="object-cover w-full h-full" src="assets/images/flower.webp" />
-                                </div>
-                            </div>
-                            <div class="swiper-slide">
-                                <div class="w-full aspect-square">
-                                    <video class="h-full w-full object-cover" poster="assets/images/AdobeStock_367073776.webp" muted playsinline autoplay loop src="assets/videos/florian.mp4"></video>
-                                </div>
+                <div class="swiper w-full relative group">
+                    <!-- Additional required wrapper -->
+                    <div class="swiper-wrapper">
+                        <!-- Slides -->
+                        <div class="swiper-slide">
+                            <div class="w-full aspect-[455/521]">
+                                <img class="object-cover w-full h-full" src="assets/images/AdobeStock_367073776.webp" />
                             </div>
                         </div>
-                        <!-- If we need navigation buttons -->
-                        <button class="swiper-button-prev absolute h-auto left-5 top-auto bottom-5 z-10 active:scale-95 after:hidden" type="button">
-                            <img class="rotate-180" src="assets/images/svg/arrow.svg" alt="arrow" />
-                        </button>
-                        <button class="swiper-button-next absolute h-auto right-5 top-auto bottom-5 z-10 active:scale-95 after:hidden" type="button">
-                            <img src="assets/images/svg/arrow.svg" alt="arrow" />
-                        </button>
-                    </div>
-                    <div class="flex flex-col text-center mt-6 md:mt-8 md:px-6">
-                        <h3 class="text-2.5xl md:text-3.5xl mb-3">Day Dreamer</h3>
-                        <p class="font-light text-xl leading-7">A natural bouquet of <i>soft blues, whites</i> and <i>creams</i>. Gorgeous <i>fresh flowers</i> arranged by your expert florist. Made using fresh <i>seasonal flowers</i>.</p>
-                        <div class="flex flex-col lg:flex-row justify-center items-center gap-5 lg:gap-3.5 mt-5">
-                            <a href="javascript:;" class="btn-primary">Buy for £25</a>
-                            <div class="custom-select">
-                                <select>
-                                  <option value="0">Subscribe - Up to 20% off</option>
-                                  <option value="1">Every Week - £18.75</option>
-                                  <option value="2">Every 2 Weeks - £20.00</option>
-                                  <option value="3"> Every 4 Weeks - £22.00</option>
-                                </select>
-                              </div>
+                        <div class="swiper-slide">
+                            <div class="w-full aspect-[455/521]">
+                                <img class="object-cover w-full h-full" src="assets/images/flower.webp" />
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="w-full aspect-[455/521]">
+                                <video class="h-full w-full object-cover" poster="assets/images/AdobeStock_367073776.webp" muted playsinline autoplay loop src="assets/videos/florian.mp4"></video>
+                            </div>
                         </div>
                     </div>
+                   <div class="absolute bg-white inset-0 z-10 opacity-0 group-hover:opacity-100 border-y border-dark-400 duration-300">
+                        <p class="text-[17px] font-roboto leading-6 px-5 py-10 opacity-0 group-hover:opacity-100 translate-y-5 group-hover:-translate-y-0 duration-300">We will pick a selection of 50 seasonal flowers grown sustainably at Florians in Hampshire for collection or local delivery to arrange yourself at home. Flowers will be prepared freshly cut in containers or brown paper.</p>
+                   </div>
                 </div>
+                <div class="flex items-center justify-between pt-3 lg:px-5">
+                    <a href="javascript:;" class="btn-primary-sm">Buy</a>
+                     <!-- If we need pagination -->
+                     <div class="swiper-pagination static flex justify-end"></div>
+                </div>
+            </div>
 
-                <!-- Grid Item -->
-                <div class="flex flex-col">
-                    <div class="swiper display-swiper w-full">
-                        <!-- Additional required wrapper -->
-                        <div class="swiper-wrapper">
-                            <!-- Slides -->
-                            <div class="swiper-slide">
-                                <div class="w-full aspect-square">
-                                    <img class="object-cover w-full h-full" src="assets/images/flower.webp" />
-                                </div>
-                            </div>
-                            <div class="swiper-slide">
-                                <div class="w-full aspect-square">
-                                    <img class="object-cover w-full h-full" src="assets/images/AdobeStock_367073776.webp" />
-                                </div>
-                            </div>
-                            <div class="swiper-slide">
-                                <div class="w-full aspect-square">
-                                    <video class="h-full w-full object-cover" poster="assets/images/AdobeStock_367073776.webp" muted playsinline autoplay loop src="assets/videos/florian.mp4"></video>
-                                </div>
+            <!-- Grid Item -->
+            <div class="flex flex-col display-swiper">
+                <div class="flex items-center px-0 md:px-5 justify-between leading-3 pb-3">
+                    <h2 class="text-lg leading-3">Harvesting & Drying</h2>
+                    <h4 class="text-[15px] font-roboto uppercase">from £90</h4>
+                </div>
+                <div class="swiper w-full relative group">
+                    <!-- Additional required wrapper -->
+                    <div class="swiper-wrapper">
+                        <!-- Slides -->
+                        <div class="swiper-slide">
+                            <div class="w-full aspect-[455/521]">
+                                <img class="object-cover w-full h-full" src="assets/images/flower.webp" />
                             </div>
                         </div>
-                        <!-- If we need navigation buttons -->
-                        <button class="swiper-button-prev absolute h-auto left-5 top-auto bottom-5 z-10 active:scale-95 after:hidden" type="button">
-                            <img class="rotate-180" src="assets/images/svg/arrow.svg" alt="arrow" />
-                        </button>
-                        <button class="swiper-button-next absolute h-auto right-5 top-auto bottom-5 z-10 active:scale-95 after:hidden" type="button">
-                            <img src="assets/images/svg/arrow.svg" alt="arrow" />
-                        </button>
-                    </div>
-                    <div class="flex flex-col text-center mt-6 md:mt-8 md:px-6">
-                        <h3 class="text-2.5xl md:text-3.5xl mb-3">Day Dreamer</h3>
-                        <p class="font-light text-xl leading-7">A natural bouquet of <i>soft blues, whites</i> and <i>creams</i>. Gorgeous <i>fresh flowers</i> arranged by your expert florist. Made using fresh <i>seasonal flowers</i>.</p>
-                        <div class="flex flex-col lg:flex-row justify-center items-center gap-5 lg:gap-3.5 mt-5">
-                            <a href="javascript:;" class="btn-primary">Buy for £25</a>
-                            <div class="custom-select">
-                                <select>
-                                  <option value="0">Subscribe - Up to 20% off</option>
-                                  <option value="1">Every Week - £18.75</option>
-                                  <option value="2">Every 2 Weeks - £20.00</option>
-                                  <option value="3"> Every 4 Weeks - £22.00</option>
-                                </select>
-                              </div>
+                        <div class="swiper-slide">
+                            <div class="w-full aspect-[455/521]">
+                                <video class="h-full w-full object-cover" poster="assets/images/AdobeStock_367073776.webp" muted playsinline autoplay loop src="assets/videos/florian.mp4"></video>
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="w-full aspect-[455/521]">
+                                <img class="object-cover w-full h-full" src="assets/images/AdobeStock_367073776.webp" />
+                            </div>
                         </div>
                     </div>
+                   <div class="absolute bg-white inset-0 z-10 opacity-0 group-hover:opacity-100 border-y border-dark-400 duration-300 flex items-end">
+                        <p class="text-[17px] font-roboto leading-6 px-5 py-10 opacity-0 group-hover:opacity-100 translate-y-5 group-hover:-translate-y-0 duration-300">Seasonal Flowers: 
+                            Snap Dragon, Dahlias, Cosmos, Rudbeckia, Ranunculus, Sweet Peas, Tulips, Dianthus (Carnation), Ammi, Verbena, Mint, Agrostemma, Phacelia, Phlox, Achillea, Aster, Chrysanthemum, Sunflower, Rose, Peony</p>
+                   </div>
+                </div>
+                <div class="flex items-center justify-between pt-3 lg:px-5">
+                    <a href="javascript:;" class="btn-primary-sm">Book here
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M18.5626 6V15.75C18.5626 15.8992 18.5034 16.0423 18.3979 16.1477C18.2924 16.2532 18.1493 16.3125 18.0001 16.3125C17.8509 16.3125 17.7079 16.2532 17.6024 16.1477C17.4969 16.0423 17.4376 15.8992 17.4376 15.75V7.3575L6.39763 18.3975C6.291 18.4969 6.14996 18.551 6.00424 18.5484C5.85851 18.5458 5.71947 18.4868 5.61641 18.3837C5.51335 18.2807 5.45432 18.1416 5.45175 17.9959C5.44918 17.8502 5.50327 17.7091 5.60263 17.6025L16.6426 6.5625H8.25013C8.10094 6.5625 7.95787 6.50324 7.85238 6.39775C7.74689 6.29226 7.68763 6.14918 7.68763 6C7.68763 5.85082 7.74689 5.70774 7.85238 5.60225C7.95787 5.49676 8.10094 5.4375 8.25013 5.4375H18.0001C18.1493 5.4375 18.2924 5.49676 18.3979 5.60225C18.5034 5.70774 18.5626 5.85082 18.5626 6Z" fill="currentColor"/>
+                        </svg>
+                    </a>
+                     <!-- If we need pagination -->
+                     <div class="swiper-pagination static flex justify-end"></div>
+                </div>
+            </div>
+
+            <!-- Grid Item -->
+            <div class="flex flex-col display-swiper">
+                <div class="flex items-center px-0 md:px-5 justify-between leading-3 pb-3">
+                    <h2 class="text-lg leading-3">Planting Festive Bowls</h2>
+                    <h4 class="text-[15px] font-roboto uppercase">from £90</h4>
+                </div>
+                <div class="swiper w-full relative group">
+                    <!-- Additional required wrapper -->
+                    <div class="swiper-wrapper">
+                        <!-- Slides -->
+                        <div class="swiper-slide">
+                            <div class="w-full aspect-[455/521]">
+                                <img class="object-cover w-full h-full" src="assets/images/AdobeStock_367073776.webp" />
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="w-full aspect-[455/521]">
+                                <img class="object-cover w-full h-full" src="assets/images/flower.webp" />
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="w-full aspect-[455/521]">
+                                <video class="h-full w-full object-cover" poster="assets/images/AdobeStock_367073776.webp" muted playsinline autoplay loop src="assets/videos/florian.mp4"></video>
+                            </div>
+                        </div>
+                    </div>
+                   <div class="absolute bg-white inset-0 z-10 opacity-0 group-hover:opacity-100 border-y border-dark-400 duration-300 flex items-end">
+                        <p class="text-[17px] font-roboto leading-6 px-5 py-10 opacity-0 group-hover:opacity-100 translate-y-5 group-hover:-translate-y-0 duration-300">Seasonal Flowers: 
+                            Snap Dragon, Dahlias, Cosmos, Rudbeckia, Ranunculus, Sweet Peas, Tulips, Dianthus (Carnation), Ammi, Verbena, Mint, Agrostemma, Phacelia, Phlox, Achillea, Aster, Chrysanthemum, Sunflower, Rose, Peony</p>
+                   </div>
+                </div>
+                <div class="flex items-center justify-between pt-3 lg:px-5">
+                    <a href="javascript:;" class="btn-primary-sm">Book here
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M18.5626 6V15.75C18.5626 15.8992 18.5034 16.0423 18.3979 16.1477C18.2924 16.2532 18.1493 16.3125 18.0001 16.3125C17.8509 16.3125 17.7079 16.2532 17.6024 16.1477C17.4969 16.0423 17.4376 15.8992 17.4376 15.75V7.3575L6.39763 18.3975C6.291 18.4969 6.14996 18.551 6.00424 18.5484C5.85851 18.5458 5.71947 18.4868 5.61641 18.3837C5.51335 18.2807 5.45432 18.1416 5.45175 17.9959C5.44918 17.8502 5.50327 17.7091 5.60263 17.6025L16.6426 6.5625H8.25013C8.10094 6.5625 7.95787 6.50324 7.85238 6.39775C7.74689 6.29226 7.68763 6.14918 7.68763 6C7.68763 5.85082 7.74689 5.70774 7.85238 5.60225C7.95787 5.49676 8.10094 5.4375 8.25013 5.4375H18.0001C18.1493 5.4375 18.2924 5.49676 18.3979 5.60225C18.5034 5.70774 18.5626 5.85082 18.5626 6Z" fill="currentColor"/>
+                        </svg>
+                    </a>
+                     <!-- If we need pagination -->
+                     <div class="swiper-pagination static flex justify-end"></div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Footer Section -->
-    <footer class="bg-primary-700 pt-12 pb-8 text-black lg:pb-12">
-        <div class="mx-auto max-w-3xl px-5 lg:px-8 xl:px-14">
-            <div class="grid grid-cols-1 lg:grid-cols-2">
-                <div class="mb-12 flex flex-col items-start border-b border-dark-300 pr-0 lg:mb-0 lg:border-b-0 lg:border-r lg:pr-8 xl:pr-14 2xl:pr-20">
-                    <h3 class="mb-8 text-1.5xl font-light">
-                        <span class="font-normal">Florians Botanical Ltd</span> is owned by Hampshire based <br class="hidden lg:inline" /> Horticulturist, Michelle Washington-Jenkins. <br /><br /> Supplier of <em>plants, flowers</em> and other
-                        <em>botanical miscellanea</em>
-                        <br class="hidden xl:inline" /> by appointment only.
-                    </h3>
-                    <div class="mt-auto hidden w-full items-end lg:flex">
-                        <div class="mr-2 xl:mr-10">
-                            <img src="assets/images/svg/logo-footer.svg" alt="" />
-                        </div>
-                        <p class="font-roboto text-sm uppercase">
-                            © 2023 Florians Botanical Ltd
-                        </p>
-                        <a href="javascript:;" class="ml-auto font-roboto text-sm uppercase underline">Hartley Wintney, RG27 8JW</a>
-                    </div>
+    <!-- Journel Section -->
+     <section class="px-3.5 lg:px-5 lg:py-14">
+        <div class="max-w-[613px] mx-auto w-full">
+            <div class="flex flex-col gap-2.5">
+                <div class="flex items-center justify-between px-0 lg:px-5">
+                    <h3 class="font-roboto-condensed text-[17px] leading-[23px] uppercase">A visual journal of a horticulturist</h3>
                 </div>
-                <div class="flex flex-col pl-0 lg:pl-8 xl:pl-14 2xl:pl-20">
-                    <div class="mb-12 flex items-center text-1.5xl">
-                        <div class="flex flex-col border-b border-dark-300 pb-7 lg:border-b-0 lg:pb-0 xl:flex-row xl:items-center">
-                            <div class="mr-3 font-light">Next Workshop:</div>
-                            <a class="flex items-center gap-5" href="javascript:;">
-                                <div>
-                                    Wreath Making
-                                    <span class="font-light">(View at EventBrite)</span>
-                                </div>
-                                <img src="assets/images/svg/link.svg" alt="link" />
-                            </a>
-                        </div>
-                        <a class="ml-auto hidden lg:flex" target="_blank" href="javascript:;">
-                            <img src="assets/images/svg/instagram.svg" alt="instagram" />
-                        </a>
-                    </div>
-                    <div class="mb-12 flex flex-col lg:mb-20">
-                        <label class="mb-9 text-1.5xl font-light">For the <em>latest news</em> and updates please <br /> subscribe to our newsletter</label>
-                        <form class="flex w-full max-w-md items-center gap-5 border-b border-dark-300">
-                            <input placeholder="Email Address" type="email" class="flex-1 bg-transparent py-2.5 font-roboto text-sm uppercase text-black placeholder:text-black/50 focus:outline-none" />
-                            <button type="submit" class="text-[23px] italic leading-7">Subscribe</button>
-                        </form>
-                    </div>
-                    <div class="hidden items-end justify-between lg:flex">
-                        <a href="index.html">
-                            <img src="assets/images/svg/logo-dark.svg" alt="logo" />
-                        </a>
-                        <img width="96" height="44" class="mix-blend-multiply" src="assets/images/svg/RHS.png" alt="RHS" />
-                    </div>
-                    <div class="mb-7 flex flex-col items-center border-b border-dark-300 pb-7 lg:hidden lg:border-b-0 lg:pb-0">
-                        <img width="96" height="44" class="mb-7 mix-blend-multiply" src="assets/images/svg/RHS.png" alt="RHS" />
-                        <a href="javascript:;" class="font-roboto text-sm uppercase underline">Hartley Wintney, RG27 8JW</a>
-                    </div>
-                    <div class="flex flex-col items-center gap-7 lg:hidden">
-                        <img src="assets/images/svg/logo-footer.svg" alt="logo" />
-                        <img src="assets/images/svg/logo-dark.svg" alt="logo" />
-                        <p class="font-roboto text-sm uppercase">
-                            © 2023 Florians Botanical Ltd
-                        </p>
-                        <a target="_blank" href="javascript:;">
-                            <img src="assets/images/svg/instagram.svg" alt="instagram" />
-                        </a>
-                    </div>
-                </div>
+                <a href="javascript:;" class="w-full aspect-[613/705]">
+                    <img class="size-full object-cover" src="assets/images/rose2.webp" alt="rose"/>
+                </a>
+                <a href="javascript:;" class="flex items-center justify-between px-0 lg:px-5">
+                    <h3 class="font-roboto-condensed text-[17px] leading-[23px] uppercase">View: <b>Keukenhof 2025</b> (Journal)</h3>
+                    <img src="assets/images/svg/arrow-link.svg" alt="arrow" />
+                </a>
             </div>
         </div>
-    </footer>
+     </section>
+
+     <!-- Journel Section -->
+     <section class="px-3.5 lg:px-5 py-16 lg:py-20">
+        <div class="max-w-[1400px] mx-auto w-full">
+             <div class="grid gap-y-6 grid-cols-1 md:grid-cols-[613px] lg:grid-cols-[1fr_613px_1fr] justify-center">
+                <h4 class="text-lg font-roboto-condensed uppercase">About</h4>
+                <p class="text-lg">Florians is owned by Hampshire based Horticulturist, Michelle Washington-Jenkins. <br/><br/>Like many people, Michelle's journey to horticulture has been preceded by a different route altogether. After leaving school in Sunninghill, Michelle worked overseas as Dancer in Asia & Europe. Afterwards, a career as a private Pilates teacher in Mayfair & Chelsea. Michelle then co-founded Shoreditch based model & talent agency <a target="_blank" class="underline" href="https://www.wmgmt.co.uk/">W Mgmt</a> and remains a non-executive Director. <br/><br/> A career break to raise 3 children and a decade later of growing plants and flowers, Michelle retrained academically though the Royal Horticultural Society and worked as a professional gardener at <a target="_blank" class="underline" href="https://www.heckfieldplace.com">Heckfield Place</a> & <a target="_blank" class="underline" href="https://www.westgreenhouse.co.uk">West Green House</a>, where she continues to host workshops. <br/><br/>Michelle can often be found in her own Victorian walled garden and two acre plot in Dipley filming and encouraging others to share her passion for growing sustainably, no matter what age and stage of their life.<br/><br/> For all endorsements or appearance requests please contact <a class="underline" href="mailto:josie@wmgmt.co.uk">Josie Larkin</a>.</p>
+             </div>
+        </div>
+     </section>
+
+     <footer class="px-3.5 lg:px-5 lg:pt-16 pb-5 md:pb-10">
+        <div class="max-w-[1400px] mx-auto w-full flex flex-col gap-5">
+            <div class="flex justify-center pb-5 border-b border-dark-400">
+                <a href="index.html">
+                    <img width="176" height="20" src="assets/images/svg/logo-dark.svg" alt="" />
+                </a>
+            </div>
+            <div class="flex flex-col items-center max-w-[773px] mx-auto w-full">
+                <p class="text-[15px] leading-6 text-center">We occasionally send out updates. To be a recipient please provide your email address below.</p>
+                <form class="flex w-full items-center gap-5 border border-dark-400 rounded-full px-6 mt-5">
+                    <input placeholder="Email Address" type="email" class="flex-1  bg-transparent font-roboto-condensed py-4 text-[17px] uppercase text-black placeholder:text-black focus:outline-none" />
+                    <button type="submit" class="font-roboto-condensed uppercase text-[17px] underline">Subscribe</button>
+                </form>
+                <ul class="my-8 flex items-center justify-center gap-7 font-roboto-condensed text-[17px]">
+                    <li>
+                        <a class="size-[60px] rounded-full border border-dark-400 flex justify-center items-center duration-300 hover:bg-black hover:text-white hover:border-black active:scale-95" target="_blank" href="javascript:;">IG</a>
+                    </li>
+                    <li>
+                        <a class="size-[60px] rounded-full border border-dark-400 flex justify-center items-center duration-300 hover:bg-black hover:text-white hover:border-black active:scale-95" target="_blank" href="javascript:;">TT</a>
+                    </li>
+                    <li>
+                        <a class="size-[60px] rounded-full border border-dark-400 flex justify-center items-center duration-300 hover:bg-black hover:text-white hover:border-black active:scale-95" target="_blank" href="javascript:;">YT</a>
+                    </li>
+                </ul>
+                <div class="flex flex-col items-center text-center text-sm leading-6 font-roboto">
+                    <p>Contact: michelle@florains.co.uk / 07843 784432 / Hartley Wintney, RG27 8JW</p>
+                    <p>© 2025 Florians Botanic Ltd</p>
+                </div>
+            </div>
+            <div class="flex justify-between items-end lg:-mt-36 relative -z-10">
+                <img width="120" height="120" class="brightness-0" src="assets/images/Antra_Florians_bloom_no-loop_transparent_1000_white_01.gif" alt="Gif" />
+                <img width="120" height="55" src="assets/images/svg/RHS.png" alt="RHS" />
+            </div>
+            
+        </div>
+     </footer>
+ 
+    
 </body>
 <!-- Swiper JS -->
 <script src="https://cdn.jsdelivr.net/npm/swiper@8/swiper-bundle.min.js"></script>
 <!-- Main JS -->
 <script type="text/javascript" src="assets/js/main.js"></script>
+
+<script>
+  function menuData() {
+    return {
+        isMenuOpen: false,
+        activeSub: '',
+        menus: [
+        {
+            title: 'Flowers',
+            url: '#',
+            items: [
+            { label: 'Mixed Flowers for the Home', url: '' },
+            { label: 'Mixed Flowers for a Small Event', url: '#' },
+            { label: 'Harvesting & Drying', url: '#' },
+            { label: 'Planting Festive Bowls', url: '#' },
+            ],
+        },
+        {
+            title: 'Workshop',
+            url: '#',
+            items: [
+            { label: 'Mixed Flowers for the Home', url: '#' },
+            { label: 'Mixed Flowers for a Small Event', url: '#' },
+            { label: 'Harvesting & Drying', url: '#' },
+            { label: 'Planting Festive Bowls', url: '#' },
+            ],
+        },
+        {
+            title: 'Lookbook',
+            url: 'lookbook.html',
+            items: [],  
+        },
+        {
+            title: 'Journal',
+            url: 'journal.html',
+            items: [],  
+        },
+        ],
+    };
+    }
+</script>
 
 </html>

@@ -3,7 +3,7 @@
     // JS loaded
     let body = document.body;
     body.classList.add('js-loaded');
-    
+
 
     // Show Active for Desktop
     const toggleActive = () => {
@@ -42,30 +42,28 @@
                     return '<span class="' + className + '">' + (index + 1) + "</span>";
                 },
             },
+            navigation: {
+                nextEl: '#toggleSwiper .swiper-button-next',
+                prevEl: '#toggleSwiper .swiper-button-prev',
+            },
+            on: {
+                transitionStart: function(){
+                    var videos = document.querySelectorAll('video');
+                    Array.prototype.forEach.call(videos, function(video){
+                        video.pause();
+                    });
+                },
+                transitionEnd: function(){
+                    var activeIndex = this.activeIndex;
+                    var activeSlide = document.getElementsByClassName('swiper-slide')[activeIndex];
+                    var activeSlideVideo = activeSlide.getElementsByTagName('video')[0];
+                    activeSlideVideo.play();
+                },
+            }
         });
     }
 
     
-
-    // Reload Window for mobile/desktop
-    var ww = window.innerWidth;
-    var limit = 1023;
-
-    function refresh() {
-        ww = window.innerWidth;
-        var w = ww < limit ? (location.reload(true)) : (ww > limit ? (location.reload(true)) : ww = limit);
-    }
-
-    var tOut;
-    window.onresize = function(event) {
-        var resW = window.innerWidth
-        clearTimeout(tOut);
-        if ((ww > limit && resW < limit) || (ww < limit && resW > limit)) {
-            tOut = setTimeout(refresh, 100);
-        }
-    };
-
-
 
     // Gallery Swiper
     const gallerySwiper = document.querySelector("#gallerySwiper"),
@@ -77,11 +75,30 @@
             slidesPerView: 1,
             spaceBetween: 0,
             grabCursor: true,
+            navigation: {
+                nextEl: '.swiper-button-next',
+                prevEl: '.swiper-button-prev',
+            },
             on: {
                 init: function() {
                     totalSlides.forEach(el => {
                         el.innerHTML = ('0' + this.slides.length).slice(-2)
                     });
+                },
+                transitionStart: function(){
+                    var videos = document.querySelectorAll('video');
+                    Array.prototype.forEach.call(videos, function(video){
+                        //video.pause();
+                    });
+                },
+                transitionEnd: function(){
+                    var activeIndex = this.activeIndex;
+                    var activeSlide = document.getElementsByClassName('swiper-slide')[activeIndex];
+                    var activeSlideVideo = activeSlide.getElementsByTagName('video')[0];
+                    if(activeSlideVideo){
+                        activeSlideVideo.play();
+                    }
+                    
                 },
                 slideChange: function() {
                     activeSlide.forEach(el => {
@@ -89,62 +106,80 @@
                     });
                 },
             },
+            
         });
     }
 
     // Display Swiper
-    const displaySwiper = document.querySelectorAll(".display-swiper");
-    if (displaySwiper) {
-        const swiper = new Swiper('.display-swiper', {
-            // Optional parameters
+    document.querySelectorAll(".display-swiper").forEach((container) => {
+        const swiperEl = container.querySelector(".swiper");
+        const nextEl = container.querySelector(".swiper-button-next");
+        const prevEl = container.querySelector(".swiper-button-prev");
+        const paginationEl = container.querySelector(".swiper-pagination");
+    
+        new Swiper(swiperEl, {
             slidesPerView: 1,
             spaceBetween: 0,
             grabCursor: true,
+            autoplay: {
+                delay: 2500,
+                disableOnInteraction: false,
+            },
             navigation: {
-                nextEl: '.display-swiper .swiper-button-next',
-                prevEl: '.display-swiper .swiper-button-prev',
+                nextEl: nextEl,
+                prevEl: prevEl,
+            },
+            pagination: {
+                el: paginationEl,
+                clickable: true,
             },
         });
-    }
+    });
 
-    
+    // Custom Select
     const customSelects = document.querySelectorAll(".custom-select");
+    
+    // Make sure we have Custom Select Length
     if (customSelects.length > 0) {
+
         var x, i, j, l, ll, selElmnt, a, b, c;
         /*look for any elements with the class "custom-select":*/
         x = document.getElementsByClassName("custom-select");
         l = x.length;
+        
         for (i = 0; i < l; i++) {
-        selElmnt = x[i].getElementsByTagName("select")[0];
-        ll = selElmnt.length;
-        /*for each element, create a new DIV that will act as the selected item:*/
-        a = document.createElement("DIV");
-        a.setAttribute("class", "select-selected");
-        if (selElmnt.selectedIndex === 0) {
-            a.classList.add("placeholder");
-        }
-        a.innerHTML = selElmnt.options[selElmnt.selectedIndex].innerHTML;
-        x[i].appendChild(a);
-        /*for each element, create a new DIV that will contain the option list:*/
-        b = document.createElement("DIV");
-        b.setAttribute("class", "select-items select-hide");
-        for (j = 1; j < ll; j++) {
-            /*for each option in the original select element,
-            create a new DIV that will act as an option item:*/
-            c = document.createElement("DIV");
-            c.innerHTML = selElmnt.options[j].innerHTML;
-            if (j === selElmnt.selectedIndex) {
-                c.setAttribute("class", "same-as-selected");
+            selElmnt = x[i].getElementsByTagName("select")[0];
+            ll = selElmnt.length;
+            /*for each element, create a new DIV that will act as the selected item:*/
+            a = document.createElement("DIV");
+            a.setAttribute("class", "select-selected");
+            if (selElmnt.selectedIndex === 0) {
+                a.classList.add("placeholder");
             }
-            c.addEventListener("click", function(e) {
-                /*when an item is clicked, update the original select box,
-                and the selected item:*/
-                var y, i, k, s, h, sl, yl;
-                s = this.parentNode.parentNode.getElementsByTagName("select")[0];
-                sl = s.length;
-                h = this.parentNode.previousSibling;
+            a.innerHTML = selElmnt.options[selElmnt.selectedIndex].innerHTML;
+            x[i].appendChild(a);
+            /*for each element, create a new DIV that will contain the option list:*/
+            b = document.createElement("DIV");
+            b.setAttribute("class", "select-items select-hide");
+            
+            for (j = 1; j < ll; j++) {
+                /*for each option in the original select element,
+                create a new DIV that will act as an option item:*/
+                c = document.createElement("DIV");
+                c.innerHTML = selElmnt.options[j].innerHTML;
+                if (j === selElmnt.selectedIndex) {
+                    c.setAttribute("class", "same-as-selected");
+                }
+                c.addEventListener("click", function(e) {
+                    /*when an item is clicked, update the original select box,
+                    and the selected item:*/
+                    var y, i, k, s, h, sl, yl;
+                    s = this.parentNode.parentNode.getElementsByTagName("select")[0];
+                    sl = s.length;
+                    h = this.parentNode.previousSibling;
                 for (i = 0; i < sl; i++) {
-                if (s.options[i].innerHTML == this.innerHTML) {
+                if (s.options[i].innerHTML == this.innerHTML) { 
+
                     s.selectedIndex = i;
                     h.innerHTML = this.innerHTML;
                     h.classList.remove("placeholder");
@@ -154,6 +189,11 @@
                     y[k].removeAttribute("class");
                     }
                     this.setAttribute("class", "same-as-selected");
+
+                    // Add Selected attr to Select and submit form
+                    s.options[i].setAttribute('selected', true);
+                    s.parentNode.parentNode.submit();
+                        
                     break;
                 }
                 }
@@ -162,6 +202,9 @@
             b.appendChild(c);
         }
         x[i].appendChild(b);
+
+
+        // Add Click Event
         a.addEventListener("click", function(e) {
             /*when the select box is clicked, close any other select boxes,
             and open/close the current select box:*/
@@ -171,6 +214,8 @@
             this.classList.toggle("select-arrow-active");
             });
         }
+        
+        // Close Select
         function closeAllSelect(elmnt) {
         /*a function that will close all select boxes in the document,
         except the current select box:*/
@@ -197,6 +242,22 @@
         document.addEventListener("click", closeAllSelect);
     }
 
-    
+
 
 })();
+
+// custom alert
+function alert(text, type= "success")
+{
+    var notyf = new Notyf({
+        duration: 0,
+        dismissible: true,
+    });
+    if(type == "success"){
+        notyf.success(text);
+    }else{
+        notyf.error(text);
+    }
+
+
+}
