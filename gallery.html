@@ -12,16 +12,16 @@
     <link href="./assets/css/style.css" rel="stylesheet" />
 </head>
 
-<body class="bg-secondary-600 text-base tracking-tight antialiased">
+<body class="bg-white text-black text-base tracking-tight antialiased">
     <!-- Gallery Section -->
-    <section class="relative font-roboto text-sm text-white">
-        <div class="mx-auto max-w-3xl px-5 lg:px-8 xl:px-14">
+    <section class="relative font-roboto text-sm">
+        <div class="mx-auto max-w-3xl px-3.5 lg:px-5">
             <div class="flex min-h-screen flex-col">
-                <div class="relative flex justify-center pt-6 pb-6 lg:justify-start lg:pt-7 lg:pb-9">
-                    <h1 class="text-center lg:text-left">
-                        FLORIANSBOTANICAL: Frozen Roses
+                <div class="relative flex py-4 justify-start lg:py-8">
+                    <h1 class="text-center lg:text-left font-roboto-condensed text-lg uppercase">
+                        A visual diary of a horticulturist
                     </h1>
-                    <a class="absolute -right-2 top-4 flex p-3 lg:top-5" href="index.html">
+                    <a class="absolute -right-2 md:-right-4 top-1.5 flex p-3 lg:top-3" href="index.html">
                         <img src="assets/images/svg/close.svg" alt="close" />
                     </a>
                 </div>
@@ -29,7 +29,7 @@
                     <div class="hidden items-center lg:flex">
                         <div class="flex h-7 w-11 flex-col justify-between">
                             <span class="activeSlide text-left">01</span>
-                            <span class="totalSlides relative text-right before:absolute before:left-3.5 before:h-px before:w-5 before:-rotate-45 before:bg-white">10</span>
+                            <span class="totalSlides relative text-right before:absolute before:left-3.5 before:h-px before:w-5 before:-rotate-45 before:bg-black">10</span>
                         </div>
                     </div>
                     <!-- Slider main container -->
@@ -37,7 +37,7 @@
                         <!-- Additional required wrapper -->
                         <div class="swiper-wrapper">
                             <!-- Slides -->
-                            <div class="swiper-slide">
+                            <div class="swiper-slide pb-10">
                                 <div class="flex h-full w-full flex-col gap-2.5 lg:flex-row lg:gap-14">
                                     <div class="relative flex-1 overflow-hidden">
                                         <img class="absolute h-full w-full object-cover object-center" src="assets/images/rose2.webp" alt="rose" />
@@ -48,16 +48,25 @@
                                     <h2 class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 text-center font-non-old text-4.5xl">
                                         Frozen Roses
                                     </h2>
+                                    <a class="absolute bottom-0 flex items-center gap-1.5 uppercase font-roboto-condensed left-1/2 -translate-x-1/2 text-[17px] whitespace-nowrap" target="_blank" href="https://www.instagram.com/p/DIg6g-nsaol/?img_index=1" class="flex items-center gap-1.5">
+                                        <div> Keukenhof 2025 <span class="underline">(Instagram)</span> </div>
+                                        <img src="assets/images/svg/link.svg" alt="link">
+                                    </a>
                                 </div>
+                                
                             </div>
-                            <div class="swiper-slide">
+                            <div class="swiper-slide pb-10">
                                 <div class="flex h-full w-full gap-2.5 lg:gap-14">
                                     <div class="relative flex-1 overflow-hidden">
                                         <img class="absolute h-full w-full object-cover" src="assets/images/AdobeStock_367073776.webp" alt="rose" />
                                     </div>
+                                    <a class="absolute bottom-0 flex items-center gap-1.5 uppercase font-roboto-condensed left-1/2 -translate-x-1/2 text-[17px] whitespace-nowrap" target="_blank" href="https://www.instagram.com/p/DIg6g-nsaol/?img_index=1" class="flex items-center gap-1.5">
+                                        <div> Keukenhof 2025 <span class="underline">(Instagram)</span> </div> 
+                                        <img src="assets/images/svg/link.svg" alt="link">
+                                    </a>
                                 </div>
                             </div>
-                            <div class="swiper-slide">
+                            <div class="swiper-slide pb-10">
                                 <div class="flex h-full w-full flex-col gap-2.5 lg:gap-14">
                                     <div class="relative flex-1 overflow-hidden">
                                         <img class="absolute h-full w-full object-cover" src="assets/images/cody-west-ah0i1Hsj4KM-unsplash.webp" alt="rose" />
@@ -65,6 +74,10 @@
                                     <div class="relative flex-1 overflow-hidden">
                                         <img class="absolute h-full w-full object-cover" src="assets/images/AdobeStock_367073776.webp" alt="rose" />
                                     </div>
+                                    <a class="absolute bottom-0 flex items-center gap-1.5 uppercase font-roboto-condensed left-1/2 -translate-x-1/2 text-[17px] whitespace-nowrap" target="_blank" href="https://www.instagram.com/p/DIg6g-nsaol/?img_index=1" class="flex items-center gap-1.5">
+                                        <div> Keukenhof 2025 <span class="underline">(Instagram)</span> </div>
+                                        <img src="assets/images/svg/link.svg" alt="link">
+                                    </a>
                                 </div>
                             </div>
                         </div>
@@ -73,12 +86,13 @@
                     <div class="hidden items-center lg:flex">
                         <div class="flex h-7 w-11 flex-col justify-between">
                             <span class="totalSlides text-left">10</span>
-                            <span class="totalSlides relative text-right before:absolute before:left-3.5 before:h-px before:w-5 before:-rotate-45 before:bg-white">10</span>
+                            <span class="totalSlides relative text-right before:absolute before:left-3.5 before:h-px before:w-5 before:-rotate-45 before:bg-black">10</span>
                         </div>
                     </div>
+                    
                 </div>
-                <div class="my-8 flex flex-col lg:hidden">
-                    <div class="mb-2 flex justify-between border-b border-white/20 pb-2">
+                <div class="flex flex-col lg:hidden">
+                    <div class="mb-2 flex justify-between border-b border-black/20 pb-2">
                         <span class="activeSlide">10</span>
                         <span class="totalSlides opacity-50">10</span>
                     </div>
@@ -87,8 +101,9 @@
                         <span class="totalSlides opacity-50">10</span>
                     </div>
                 </div>
-                <div class="hidden pb-8 lg:flex">
-                    <img src="assets/images/svg/logo-white.svg" alt="logo" />
+
+                <div class="flex flex-col items-center text-center font-roboto-condensed pt-5 pb-5 text-[13px]">
+                    All images © Florians Botanical Ltd.
                 </div>
             </div>
         </div>
