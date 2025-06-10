@@ -68,7 +68,8 @@
     // Gallery Swiper
     const gallerySwiper = document.querySelector("#gallerySwiper"),
         activeSlide = document.querySelectorAll(".activeSlide"),
-        totalSlides = document.querySelectorAll(".totalSlides");
+        totalSlides = document.querySelectorAll(".totalSlides")
+        nextSlide = document.querySelectorAll(".nextSlide");
     if (gallerySwiper && activeSlide && totalSlides) {
         const swiper = new Swiper('#gallerySwiper', {
             // Optional parameters
@@ -82,15 +83,40 @@
             on: {
                 init: function() {
                     totalSlides.forEach(el => {
-                        el.innerHTML = ('0' + this.slides.length).slice(-2)
+                        el.innerHTML = ('0' + this.slides.length).slice(-2);
+                    });
+            
+                    activeSlide.forEach(el => {
+                        el.innerHTML = ('0' + (this.activeIndex + 1)).slice(-2);
+                    });
+            
+                    nextSlide.forEach(el => {
+                        const next = this.activeIndex + 2;
+                        const cap = this.slides.length;
+                        el.innerHTML = ('0' + (next > cap ? cap : next)).slice(-2);
                     });
                 },
+            
+                slideChange: function() {
+                    activeSlide.forEach(el => {
+                        el.innerHTML = ('0' + (this.activeIndex + 1)).slice(-2);
+                    });
+            
+                    nextSlide.forEach(el => {
+                        const next = this.activeIndex + 2;
+                        const cap = this.slides.length;
+                        el.innerHTML = ('0' + (next > cap ? cap : next)).slice(-2);
+                    });
+                },
+            
+                // Optional: handle autoplay or drag-to-next
                 transitionStart: function(){
                     var videos = document.querySelectorAll('video');
                     Array.prototype.forEach.call(videos, function(video){
                         //video.pause();
                     });
                 },
+            
                 transitionEnd: function(){
                     var activeIndex = this.activeIndex;
                     var activeSlide = document.getElementsByClassName('swiper-slide')[activeIndex];
@@ -98,12 +124,6 @@
                     if(activeSlideVideo){
                         activeSlideVideo.play();
                     }
-                    
-                },
-                slideChange: function() {
-                    activeSlide.forEach(el => {
-                        el.innerHTML = ('0' + (this.activeIndex + 1)).slice(-2)
-                    });
                 },
             },
             
