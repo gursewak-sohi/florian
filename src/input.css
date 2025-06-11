@@ -77,11 +77,11 @@
 
 /* Swiper JS Pagination */
 .swiper-pagination-bullet {
- @apply w-[13px] h-px opacity-50 bg-black rounded-none duration-200
+ @apply w-[13px] h-2 opacity-100 bg-transparent border-b-2 border-b-[#BBBBBB] rounded-none duration-200
 } 
 
 .swiper-pagination-bullet.swiper-pagination-bullet-active {
-  @apply opacity-100 w-5
+  @apply opacity-100 w-5 bg-transparent border-b-2 border-b-black 
 }
 
 /* Swiper Styling */
