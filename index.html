@@ -81,9 +81,12 @@
                     class="overflow-hidden">
                 <ul class="flex flex-col gap-7 text-[28px] leading-6 font-light whitespace-nowrap">
                     <template x-for="item in menu.items" :key="item.label">
-                    <li class="truncate">
-                        <a class="truncate py-0.5 block" :href="item.url" x-text="item.label"></a>
-                    </li>
+                        <li class="truncate">
+                            <a class="truncate flex items-center gap-2" :href="item.url">
+                                <span class="truncate block py-0.5" x-text="item.label"></span>
+                                <span x-text="item.tag" x-show="item.tag" class="bg-black relative -top-0.5 shrink-0 text-white rounded-full px-2.5 py-1 uppercase font-roboto-condensed font-medium text-xs ml-1"></span>
+                            </a>
+                        </li>
                     </template>
                 </ul>
                 </div>
@@ -119,13 +122,16 @@
                         </a>
                         <!-- Dropdown -->
                         <div class="pt-8 absolute top-5 left-0 z-10 invisible duration-300 opacity-0 group-hover:visible group-hover:opacity-100">
-                            <ul class="w-[338px] bg-white p-5 flex flex-col gap-6 font-roboto-condensed text-base">
+                            <ul class="w-[348px] bg-white p-5 flex flex-col gap-6 font-roboto-condensed text-[15px]">
                             <template x-for="item in menu.items" :key="item.label">
                                 <li>
                                     <a
                                     :href="item.url"
                                     class="flex items-center gap-[5px] before:content-[url('/florian/assets/images/svg/arrow-right-dark.svg')] before:size-0 hover:before:size-5 before:scale-0 hover:before:scale-100 before:duration-300 before:origin-top"
-                                    x-text="item.label"></a>
+                                    >
+                                    <span x-text="item.label"></span>
+                                    <span x-text="item.tag" x-show="item.tag" class="bg-black text-white rounded-full px-2.5 py-1 uppercase font-roboto-condensed text-xs ml-1"></span>
+                                    </a>
                                 </li>
                             </template>
                         </ul>
@@ -161,7 +167,7 @@
      </header>
 
     <!-- Hero Section -->
-    <section x-data="{ isPlaying: false }" class="px-3.5 lg:px-5 text-white font-roboto-condensed text-lg font-normal uppercase">
+    <section x-data="{ isPlaying: true }" class="px-3.5 lg:px-5 text-white font-roboto-condensed text-lg font-normal uppercase">
         <div class="relative aspect-square lg:aspect-auto lg:h-[calc(100vh_-100px)] lg:min-h-[700px] max-h-[calc(100vh_-100px)] w-full bg-red-100">
             <div class="absolute size-full inset-0 cursor-pointer bg-black">
                 <!-- Image -->
@@ -176,6 +182,7 @@
                     muted
                     loop
                     playsinline
+                    autoplay
                 >
                     <source src="assets/videos/sample.mp4" type="video/mp4" />
                     Your browser does not support the video tag.
@@ -183,7 +190,7 @@
             </div>
 
             <!-- Top text -->
-            <div class="text-[15px] lg:text-lg absolute left-1/2 -translate-x-1/2 top-5 text-center whitespace-nowrap pointer-events-none">The Art of Growing Flowers</div>
+            <div class="text-[15px] lg:text-[17px] absolute left-1/2 -translate-x-1/2 top-5 text-center whitespace-nowrap pointer-events-none">The Art of Growing Flowers</div>
 
             <!-- Play/Pause -->
             <div class="text-[15px] absolute left-1/2 -translate-x-1/2 bottom-5 lg:bottom-auto lg:top-1/2 lg:-translate-y-1/2 text-center whitespace-nowrap pointer-events-none">
@@ -191,7 +198,7 @@
             </div>
 
             <!-- Navigation Grid -->
-            <div class="hidden lg:grid grid-cols-4 absolute bottom-12 inset-x-0 px-7 h-20 ">
+            <div class="hidden lg:grid grid-cols-4 absolute bottom-12 inset-x-0 px-7 h-20 text-[17px]">
                 <a href="javascript:;" class="border-r border-white px-7 flex items-end group">
                     <div class="flex items-center gap-1.5 group-hover:-translate-y-6 duration-300" >Flowers <img class="group-hover:-rotate-45 duration-300" src="assets/images/svg/arrow-right.svg" alt="arrow"></div>
                 </a>
@@ -214,7 +221,7 @@
             <!-- Grid Item -->
             <div class="flex flex-col display-swiper">
                 <div class="flex items-center px-0 md:px-5 justify-between leading-3 pb-3 gap-4">
-                    <h2 class="text-lg leading-3 whitespace-nowrap truncate py-1">Mixed Flowers for the Home</h2>
+                    <h2 class="text-base leading-3 whitespace-nowrap truncate py-1">Mixed Flowers for the Home</h2>
                     <h4 class="text-[15px] font-roboto uppercase">£90</h4>
                 </div>
                 <div class="swiper w-full relative group">
@@ -222,13 +229,22 @@
                     <div class="swiper-wrapper">
                         <!-- Slides -->
                         <div class="swiper-slide">
-                            <div class="w-full aspect-[455/521]">
+                            <div class="w-full aspect-[455/521] relative">
                                 <img class="object-cover w-full h-full" src="assets/images/flower.webp" />
+                                <div class="bg-white rounded-full px-3.5 py-1 uppercase font-roboto-condensed text-sm leading-[23px] absolute right-5 top-5">free</div>
+                            </div>
+                        </div>
+                        <div class="swiper-slide">
+                            <div class="w-full aspect-[455/521]">
+                                <div class="size-full bg-white border-y border-dark-400 flex">
+                                    <p class="text-base font-roboto lg:px-5 py-8 lg:py-10 self-start">We will pick a selection of 50 seasonal flowers grown sustainably at Florians in Hampshire for collection or local delivery to arrange yourself at home. Flowers will be prepared freshly cut in containers or brown paper.</p>
+                               </div>
                             </div>
                         </div>
                         <div class="swiper-slide">
                             <div class="w-full aspect-[455/521]">
                                 <img class="object-cover w-full h-full" src="assets/images/AdobeStock_367073776.webp" />
+                                <div class="bg-white rounded-full px-3.5 py-1 uppercase font-roboto-condensed text-sm leading-[23px] absolute right-5 top-5">30% Off</div>
                             </div>
                         </div>
                         <div class="swiper-slide">
@@ -237,9 +253,6 @@
                             </div>
                         </div>
                     </div>
-                   <div class="absolute bg-white inset-0 z-10 opacity-0 group-hover:opacity-100 border-y border-dark-400 duration-300">
-                        <p class="text-[17px] font-roboto leading-6 lg:px-5 py-8 lg:py-10 opacity-0 group-hover:opacity-100 translate-y-5 group-hover:-translate-y-0 duration-300">We will pick a selection of 50 seasonal flowers grown sustainably at Florians in Hampshire for collection or local delivery to arrange yourself at home. Flowers will be prepared freshly cut in containers or brown paper.</p>
-                   </div>
                 </div>
                 <div class="flex items-center justify-between pt-3 lg:px-5">
                     <a href="javascript:;" class="btn-primary-sm">Buy</a>
@@ -251,7 +264,7 @@
             <!-- Grid Item -->
             <div class="flex flex-col display-swiper">
                 <div class="flex items-center px-0 md:px-5 justify-between leading-3 pb-3 gap-4">
-                    <h2 class="text-lg leading-3 whitespace-nowrap truncate py-1">Mixed Flowers for a Small Event</h2>
+                    <h2 class="text-base leading-3 whitespace-nowrap truncate py-1">Mixed Flowers for a Small Event</h2>
                     <h4 class="text-[15px] font-roboto uppercase">£90</h4>
                 </div>
                 <div class="swiper w-full relative group">
@@ -260,11 +273,13 @@
                         <!-- Slides -->
                         <div class="swiper-slide">
                             <div class="w-full aspect-[455/521]">
-                                <img class="object-cover w-full h-full" src="assets/images/AdobeStock_367073776.webp" />
+                                <div class="size-full bg-white border-y border-dark-400 flex">
+                                    <p class="text-base font-roboto lg:px-5 py-8 lg:py-10 self-center">We will pick a selection of 50 seasonal flowers grown sustainably at Florians in Hampshire for collection or local delivery to arrange yourself at home. Flowers will be prepared freshly cut in containers or brown paper.</p>
+                               </div>
                             </div>
                         </div>
                         <div class="swiper-slide">
-                            <div class="w-full aspect-[455/521]">
+                            <div class="w-full aspect-[455/521] relative">
                                 <img class="object-cover w-full h-full" src="assets/images/flower.webp" />
                             </div>
                         </div>
@@ -274,9 +289,7 @@
                             </div>
                         </div>
                     </div>
-                   <div class="absolute bg-white inset-0 z-10 opacity-0 group-hover:opacity-100 border-y border-dark-400 duration-300">
-                        <p class="text-[17px] font-roboto leading-6 lg:px-5 py-8 lg:py-10 opacity-0 group-hover:opacity-100 translate-y-5 group-hover:-translate-y-0 duration-300">We will pick a selection of 50 seasonal flowers grown sustainably at Florians in Hampshire for collection or local delivery to arrange yourself at home. Flowers will be prepared freshly cut in containers or brown paper.</p>
-                   </div>
+
                 </div>
                 <div class="flex items-center justify-between pt-3 lg:px-5">
                     <a href="javascript:;" class="btn-primary-sm">Buy</a>
@@ -288,7 +301,7 @@
             <!-- Grid Item -->
             <div class="flex flex-col display-swiper">
                 <div class="flex items-center px-0 md:px-5 justify-between leading-3 pb-3 gap-4">
-                    <h2 class="text-lg leading-3 whitespace-nowrap truncate py-1">Harvesting & Drying</h2>
+                    <h2 class="text-base leading-3 whitespace-nowrap truncate py-1">Harvesting & Drying</h2>
                     <h4 class="text-[15px] font-roboto uppercase">from £90</h4>
                 </div>
                 <div class="swiper w-full relative group">
@@ -311,10 +324,7 @@
                             </div>
                         </div>
                     </div>
-                   <div class="absolute bg-white inset-0 z-10 opacity-0 group-hover:opacity-100 border-y border-dark-400 duration-300 flex items-end">
-                        <p class="text-[17px] font-roboto leading-6 lg:px-5 py-8 lg:py-10 opacity-0 group-hover:opacity-100 translate-y-5 group-hover:-translate-y-0 duration-300">Seasonal Flowers: 
-                            Snap Dragon, Dahlias, Cosmos, Rudbeckia, Ranunculus, Sweet Peas, Tulips, Dianthus (Carnation), Ammi, Verbena, Mint, Agrostemma, Phacelia, Phlox, Achillea, Aster, Chrysanthemum, Sunflower, Rose, Peony</p>
-                   </div>
+                    
                 </div>
                 <div class="flex items-center justify-between pt-3 lg:px-5">
                     <a href="javascript:;" class="btn-primary-sm">Book here
@@ -330,7 +340,7 @@
             <!-- Grid Item -->
             <div class="flex flex-col display-swiper">
                 <div class="flex items-center px-0 md:px-5 justify-between leading-3 pb-3 gap-4">
-                    <h2 class="text-lg leading-3 whitespace-nowrap truncate py-1">Planting Festive Bowls</h2>
+                    <h2 class="text-base leading-3 whitespace-nowrap truncate py-1">Planting Festive Bowls</h2>
                     <h4 class="text-[15px] font-roboto uppercase">from £90</h4>
                 </div>
                 <div class="swiper w-full relative group">
@@ -339,12 +349,15 @@
                         <!-- Slides -->
                         <div class="swiper-slide">
                             <div class="w-full aspect-[455/521]">
-                                <img class="object-cover w-full h-full" src="assets/images/AdobeStock_367073776.webp" />
+                                <div class="size-full bg-white border-y border-dark-400 flex">
+                                    <p class="text-base font-roboto lg:px-5 py-8 lg:py-10 self-end">We will pick a selection of 50 seasonal flowers grown sustainably at Florians in Hampshire for collection or local delivery to arrange yourself at home. Flowers will be prepared freshly cut in containers or brown paper.</p>
+                            </div>
                             </div>
                         </div>
                         <div class="swiper-slide">
-                            <div class="w-full aspect-[455/521]">
+                            <div class="w-full aspect-[455/521] relative">
                                 <img class="object-cover w-full h-full" src="assets/images/flower.webp" />
+                                <div class="bg-white rounded-full px-3.5 py-1 uppercase font-roboto-condensed text-sm leading-[23px] absolute right-5 top-5">free</div>
                             </div>
                         </div>
                         <div class="swiper-slide">
@@ -353,10 +366,7 @@
                             </div>
                         </div>
                     </div>
-                   <div class="absolute bg-white inset-0 z-10 opacity-0 group-hover:opacity-100 border-y border-dark-400 duration-300 flex items-end">
-                        <p class="text-[17px] font-roboto leading-6 lg:px-5 py-8 lg:py-10 opacity-0 group-hover:opacity-100 translate-y-5 group-hover:-translate-y-0 duration-300">Seasonal Flowers: 
-                            Snap Dragon, Dahlias, Cosmos, Rudbeckia, Ranunculus, Sweet Peas, Tulips, Dianthus (Carnation), Ammi, Verbena, Mint, Agrostemma, Phacelia, Phlox, Achillea, Aster, Chrysanthemum, Sunflower, Rose, Peony</p>
-                   </div>
+                 
                 </div>
                 <div class="flex items-center justify-between pt-3 lg:px-5">
                     <a href="javascript:;" class="btn-primary-sm">Book here
@@ -376,14 +386,14 @@
         <div class="max-w-[613px] mx-auto w-full">
             <div class="flex flex-col gap-2.5">
                 <div class="flex items-center justify-between px-0 lg:px-5">
-                    <h3 class="font-roboto-condensed text-[17px] leading-[23px] uppercase">A visual journal of a horticulturist</h3>
+                    <h3 class="font-roboto-condensed text-base uppercase">A visual journal of a horticulturist</h3>
                 </div>
                 <a href="javascript:;" class="w-full aspect-[613/705]">
                     <img class="size-full object-cover" src="assets/images/rose2.webp" alt="rose"/>
                 </a>
                 <a href="javascript:;" class="flex items-center justify-between px-0 lg:px-5">
-                    <h3 class="font-roboto-condensed text-[17px] leading-[23px] uppercase">View: <b>Keukenhof 2025</b> (Journal)</h3>
-                    <img src="assets/images/svg/arrow-link.svg" alt="arrow" />
+                    <h3 class="font-roboto-condensed text-base uppercase">View: <b>Keukenhof 2025</b> (Journal)</h3>
+                    <img class="" src="assets/images/svg/arrow-link.svg" alt="arrow" />
                 </a>
             </div>
         </div>
@@ -393,8 +403,8 @@
      <section class="px-3.5 lg:px-5 py-16 lg:py-20">
         <div class="max-w-[1400px] mx-auto w-full">
              <div class="grid gap-y-6 grid-cols-1 md:grid-cols-[613px] lg:grid-cols-[1fr_613px_1fr] justify-center">
-                <h4 class="text-lg font-roboto-condensed uppercase">About</h4>
-                <p class="text-lg">Florians is owned by Hampshire based Horticulturist, Michelle Washington-Jenkins. <br/><br/>Like many people, Michelle's journey to horticulture has been preceded by a different route altogether. After leaving school in Sunninghill, Michelle worked overseas as Dancer in Asia & Europe. Afterwards, a career as a private Pilates teacher in Mayfair & Chelsea. Michelle then co-founded Shoreditch based model & talent agency <a target="_blank" class="underline" href="https://www.wmgmt.co.uk/">W Mgmt</a> and remains a non-executive Director. <br/><br/> A career break to raise 3 children and a decade later of growing plants and flowers, Michelle retrained academically though the Royal Horticultural Society and worked as a professional gardener at <a target="_blank" class="underline" href="https://www.heckfieldplace.com">Heckfield Place</a> & <a target="_blank" class="underline" href="https://www.westgreenhouse.co.uk">West Green House</a>, where she continues to host workshops. <br/><br/>Michelle can often be found in her own Victorian walled garden and two acre plot in Dipley filming and encouraging others to share her passion for growing sustainably, no matter what age and stage of their life.<br/><br/> For all endorsements or appearance requests please contact <a class="underline" href="mailto:josie@wmgmt.co.uk">Josie Larkin</a>.</p>
+                <h4 class="text-base font-roboto-condensed uppercase">About</h4>
+                <p class="text-[17px] leading-6">Florians is owned by Hampshire based Horticulturist, Michelle Washington-Jenkins. <br/><br/>Like many people, Michelle's journey to horticulture has been preceded by a different route altogether. After leaving school in Sunninghill, Michelle worked overseas as Dancer in Asia & Europe. Afterwards, a career as a private Pilates teacher in Mayfair & Chelsea. Michelle then co-founded Shoreditch based model & talent agency <a target="_blank" class="underline" href="https://www.wmgmt.co.uk/">W Mgmt</a> and remains a non-executive Director. <br/><br/> A career break to raise 3 children and a decade later of growing plants and flowers, Michelle retrained academically though the Royal Horticultural Society and worked as a professional gardener at <a target="_blank" class="underline" href="https://www.heckfieldplace.com">Heckfield Place</a> & <a target="_blank" class="underline" href="https://www.westgreenhouse.co.uk">West Green House</a>, where she continues to host workshops. <br/><br/>Michelle can often be found in her own Victorian walled garden and two acre plot in Dipley filming and encouraging others to share her passion for growing sustainably, no matter what age and stage of their life.<br/><br/> For all endorsements or appearance requests please contact <a class="underline" href="mailto:josie@wmgmt.co.uk">Josie Larkin</a>.</p>
              </div>
         </div>
      </section>
@@ -424,8 +434,8 @@
                     </li>
                 </ul>
                 <div class="flex flex-col items-center text-center text-sm leading-6 font-roboto">
-                    <p>Contact: michelle@florains.co.uk / 07843 784432 / Hartley Wintney, RG27 8JW</p>
-                    <p>© 2025 Florians Botanic Ltd</p>
+                    <p>Contact: michelle@florians.co.uk / 07816 898184 / Hartley Wintney, RG27 8JW</p>
+                    <p>© 2025 Florians Botanical Ltd</p>
                 </div>
             </div>
             <div class="flex justify-between items-end lg:-mt-36 relative -z-10">
@@ -453,20 +463,20 @@
             title: 'Flowers',
             url: '#',
             items: [
-            { label: 'Mixed Flowers for the Home', url: '' },
-            { label: 'Mixed Flowers for a Small Event', url: '#' },
-            { label: 'Harvesting & Drying', url: '#' },
-            { label: 'Planting Festive Bowls', url: '#' },
+            { label: 'Mixed Flowers for the Home', url: '', tag: 'Free' },
+            { label: 'Mixed Flowers for a Small Event', url: '#', tag: null },
+            { label: 'Harvesting & Drying', url: '#', tag: '30% off' },
+            { label: 'Planting Festive Bowls', url: '#', tag: null },
             ],
         },
         {
             title: 'Workshop',
             url: '#',
             items: [
-            { label: 'Mixed Flowers for the Home', url: '#' },
-            { label: 'Mixed Flowers for a Small Event', url: '#' },
-            { label: 'Harvesting & Drying', url: '#' },
-            { label: 'Planting Festive Bowls', url: '#' },
+            { label: 'Mixed Flowers for the Home', url: '', tag: 'Free' },
+            { label: 'Mixed Flowers for a Small Event', url: '#', tag: null },
+            { label: 'Harvesting & Drying', url: '#', tag: '30% off' },
+            { label: 'Planting Festive Bowls', url: '#', tag: null },
             ],
         },
         {
