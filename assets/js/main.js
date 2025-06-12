@@ -141,10 +141,7 @@
             slidesPerView: 1,
             spaceBetween: 0,
             grabCursor: true,
-            autoplay: {
-                delay: 2500,
-                disableOnInteraction: false,
-            },
+           
             navigation: {
                 nextEl: nextEl,
                 prevEl: prevEl,
