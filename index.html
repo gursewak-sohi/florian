@@ -170,14 +170,13 @@
     <!-- Hero Section -->
     <section x-data="{ isPlaying: true }" class="px-3.5 lg:px-5 text-white font-roboto-condensed text-lg font-normal uppercase">
         <div class="relative aspect-square lg:aspect-auto lg:h-[calc(100vh_-100px)] lg:min-h-[700px] max-h-[calc(100vh_-100px)] w-full bg-red-100">
-            <div class="absolute size-full inset-0 cursor-pointer bg-black">
+            <div class="absolute size-full inset-0 bg-black">
                 <!-- Image -->
                 <!-- <img class="object-cover size-full" src="assets/images/hero.webp" alt="hero" /> -->
 
                 <!-- Video -->
                 <video
                     x-ref="heroVideo"
-                    @click="isPlaying ? $refs.heroVideo.pause() : $refs.heroVideo.play(); isPlaying = !isPlaying"
                     poster="assets/images/hero.webp"
                     class="object-cover size-full"
                     muted
@@ -194,9 +193,12 @@
             <div class="text-[15px] lg:text-[17px] absolute left-1/2 -translate-x-1/2 top-5 text-center whitespace-nowrap pointer-events-none">The Art of Growing Flowers</div>
 
             <!-- Play/Pause -->
-            <div class="text-[15px] absolute left-1/2 -translate-x-1/2 bottom-5 lg:bottom-auto lg:top-1/2 lg:-translate-y-1/2 text-center whitespace-nowrap pointer-events-none">
+             <div class="absolute left-1/2 -translate-x-1/2 bottom-5 lg:bottom-auto lg:top-1/2 lg:-translate-y-1/2 text-center whitespace-nowrap">
+             <button @click="isPlaying ? $refs.heroVideo.pause() : $refs.heroVideo.play(); isPlaying = !isPlaying" class="btn-primary-sm">
                 <span x-text="isPlaying ? 'Pause' : 'Play'"></span>
+             </button>
             </div>
+           
 
             <!-- Navigation Grid -->
             <div class="hidden lg:grid grid-cols-4 absolute bottom-12 inset-x-0 px-7 h-20 text-[17px]">
