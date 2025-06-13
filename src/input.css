@@ -138,8 +138,8 @@
   @apply uppercase shrink-0 w-[129px] gap-1.5 pt-px h-8 bg-black border border-black text-center text-white rounded-full font-roboto-condensed text-[15px] leading-[23px] duration-300 hover:bg-white hover:text-black whitespace-nowrap active:scale-95 flex items-center justify-center
 }
 
-.btn-transparent-sm {
-  @apply uppercase shrink-0 w-[129px] gap-1.5 pt-px h-8 bg-transparent border border-white text-center text-white rounded-full font-roboto-condensed text-[15px] leading-[23px] duration-300 hover:bg-white hover:text-black whitespace-nowrap active:scale-95 flex items-center justify-center
+.btn-transparent-circle {
+  @apply uppercase shrink-0 size-24 md:size-28 gap-1.5 pt-px bg-transparent border border-white text-center text-white rounded-full font-roboto-condensed text-[15px] leading-[23px] duration-300 hover:bg-white hover:text-black whitespace-nowrap active:scale-95 flex items-center justify-center
 }
 
 /* Custom Select */
